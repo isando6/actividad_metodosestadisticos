@@ -1,0 +1,57 @@
+# Análisis de la variable `median_house_value`
+
+Antes de explorar las posibles relaciones entre las variables predictoras y el valor de las viviendas, es fundamental comprender el comportamiento de la variable objetivo (target) por sí sola. Conocer su tendencia central, dispersión y forma de distribución facilita la anticipación de posibles dificultades para el análisis posterior (como la presencia de asimetría, valores atípicos o truncamientos en los datos) y sienta las bases para interpretar correctamente los resultados de las secciones siguientes.
+
+Se calcula un resumen estadístico completo de `median_house_value`, incluyendo medidas de tendencia central (media, mediana), de dispersión (desviación estándar, rango intercuartílico) y de forma de la distribución (asimetría, curtosis), **con el fin de caracterizar numéricamente el comportamiento de la variable antes de analizarla visualmente.**
+
+```{r resumen estadístico de la variable de valor medio de costo de vivienda}
+df %>% 
+  summarise(n=length(median_house_value),
+                 media=mean(median_house_value),
+                 sd=sd(median_house_value),
+                 mediana=median(median_house_value),
+                 RIC=IQR(median_house_value),
+                 Q1=quantile(median_house_value,0.25),
+                 Q3=quantile(median_house_value,0.75),
+                 minimo=min(median_house_value),
+                 maximo=max(median_house_value),
+                 asimetria=skewness(median_house_value),
+                 curtosis=kurtosis(median_house_value))
+```
+
+El conjunto de datos contiene 20.640 observaciones (bloques censales), cada una caracterizada por el valor mediano de las viviendas que agrupa. Este valor tiene un promedio de 206.855 dólares, con una desviación estándar de 115.395. La mediana se ubica en 179.700, es decir, el 50% de los bloques censales presenta un valor mediano de vivienda igual o inferior a esta cifra. El rango intercuartílico es de 145.125; el 25% de los bloques censales tiene un valor mediano igual o inferior a 119.600 (Q1); el 75% se encuentra por debajo o igual a 264.725 (Q3).
+
+Para complementar el resumen numérico, se visualiza la distribución completa de `median_house_value` mediante un histograma con una curva de densidad superpuesta. Esta  visualización ayuda a identificar patrones que el resumen estadístico por sí solo no revela, como la forma general de la distribución (simétrica, sesgada, bimodal) y la presencia de posibles anomalías en los datos.
+
+```{r histograma de median_house_value}
+df %>% 
+  ggplot(aes(x=median_house_value))+
+  geom_histogram(aes(y=after_stat(density)),
+                 binwidth=25000,
+                 fill="#54878f",
+                 color="white",
+                 alpha=0.6)+
+  geom_density(color="darkblue", linewidth=1.2)+
+  labs(title='Distribucion del valor medio de las viviendas',
+       x='valor medio de la casa(USD)',
+       y='densidad')+
+  theme_minimal()
+
+```
+
+El histograma muestra una distribución con asimetría positiva, por lo que la mayoría de los bloques censales se concentran en valores bajos y medios, al tiempo que un grupo menor se extiende en una cola larga hacia la derecha, patrón que también se refleja en que la media (206.855,8) sea superior a la mediana (179.700), dado que los valores extremos altos desplazan el promedio sin afectar a la mediana. Asimismo, se observa una barra inusualmente alta en $500.000, correspondiente a 965 bloques censales (4.7% del total), que rompe el decrecimiento gradual esperado en la cola de la distribución.
+
+
+Como complemento al histograma, se construye un diagrama de caja y bigotes, con el que se visualizará de forma más precisa la mediana, los cuartiles y, en especial, la cantidad y ubicación de los valores atípicos de la variable.
+
+```{r caja de bigotes de median_house_value}
+df %>% 
+  ggplot(aes(x="", y=median_house_value))+
+  geom_boxplot(fill="#54878f", color="black",outlier.color="darkred")+
+  stat_summary(fun=mean, geom='point', shape=20, size=3, color="darkgreen")+
+  theme_minimal()
+```
+
+El boxplot representa la asimetría descrita en los párrafos anteriores. La mediana no está centrada dentro de la caja, ya que la distancia entre Q1 y la mediana (60.100) es menor que la distancia entre la mediana y Q3 (85.025), lo que indica que el 25% superior de los datos ocupa un rango de valores más amplio que el 25% inferior.
+
+Esto se refuerza con el bigote superior, notablemente más largo que el inferior (≈217.688 frente a ≈104.601), pues mientras el límite inferior teórico (Q1 - 1.5×RIC) resulta negativo y por tanto no genera atípicos, el límite superior (Q3 + 1.5×RIC ≈ 482.413) sí es superado por un subconjunto de datos. En consecuencia, se identifican 1.071 valores atípicos (5.2% del total), todos ubicados por encima del límite superior, lo que confirma que la dispersión de la variable no está distribuida de forma pareja, concentrada en los bloques censales de mayor valor.

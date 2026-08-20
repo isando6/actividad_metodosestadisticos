@@ -1,0 +1,131 @@
+# Análisis exploratorio bivariado
+
+Tras haber caracterizado el comportamiento individual de `median_house_value` en la sección anterior, corresponde examinar cómo se relaciona esta variable con el resto de variables del conjunto de datos mediante un análisis exploratorio bivariado, el cual facilita identificar, de forma visual y estadística, qué variables predictoras muestran algún tipo de asociación con el valor de la vivienda, y de qué naturaleza es dicha asociación (sea lineal, no lineal, geográfica o prácticamente inexistente), información clave antes de avanzar hacia la ingeniería de características.
+
+```{r valoresingreso}
+df %>% 
+  ggplot(aes(x=median_income,y=median_house_value))+
+  geom_point(alpha=0.4,color='darkblue')+
+  labs(y='valor medio de la vivienda',x='ingreso medio')+
+  theme_minimal()+
+  facet_grid(.~'Dispersión entre ingreso medio y el valor medio de la vivienda')
+```
+
+**median_income vs median_house_value**: Se observa una tendencia lineal positiva consistente en la que a medida que aumenta el ingreso medio del bloque censal, el valor mediano de la vivienda tiende a aumentar de forma sostenida. Hay una línea horizontal de puntos en $500.000, correspondiente al truncamiento de `median_house_value` identificado en el análisis de la variable respuesta. Adicionalmente, la dispersión de los puntos no es constante a lo largo del eje X, en la que para los ingresos bajos la nube se concentra en un rango estrecho de precios, pero para los ingresos altos la dispersión vertical es considerablemente mayor.
+
+
+```{r housing_median_age vs median_house_value}
+df %>%
+  ggplot(aes(x = housing_median_age, y = median_house_value)) + geom_point(alpha = 0.4, color = 'darkblue') + labs(x='Antigüedad de la vivienda', y = 'Valor medio de la vivienda')+ theme_bw() + facet_grid(.~ 'Dispersión entre antigüedad y el valor medio de la vivienda')
+```
+
+**housing_median_age** vs **median_house_value**: La nube de puntos se distribuye de manera prácticamente uniforme a lo largo de todas las edades, sin que se aprecie una tendencia lineal clara ni creciente o decreciente. Para cada valor de antigüedad hay viviendas tanto baratas como caras, lo que sugiere una asociación muy débil entre estas dos variables. Se observa también una línea horizontal de puntos en $500.000, reflejo del truncamiento ya identificado en el análisis univariado de la variable objetivo.
+
+```{r total_rooms vs median_house_value}
+df %>%
+  ggplot(aes(x = total_rooms, y = median_house_value)) + geom_point(alpha = 0.4, color = 'darkblue') + labs(x='Número total de habitaciones', y = 'Valor medio de la vivienda')+ theme_bw() + facet_grid(.~ 'Dispersión entre total de habitaciones y el valor medio de la vivienda')
+
+```
+
+**total_rooms vs median_house_value**: La mayoría de los puntos se concentran en la zona baja del eje X (pocas habitaciones), con una leve tendencia a que el valor de la vivienda aumente conforme crece el número de habitaciones, aunque de forma muy dispersa y con mucho ruido. Se distinguen varios puntos atípicos alejados hacia la derecha (bloques con muchas habitaciones) que no necesariamente corresponden a los valores de vivienda más altos, lo que indica una asociación débil y no estrictamente lineal.
+
+```{r total_bedrooms vs median_house_value}
+df %>%
+  ggplot(aes(x = total_bedrooms, y = median_house_value)) + geom_point(alpha = 0.4, color = 'darkblue') + labs(x='Número total de dormitorios', y = 'Valor medio de la vivienda')+ theme_bw() + facet_grid(.~ 'Dispersión entre total de dormitorios y el valor medio de la vivienda')
+
+```
+
+**total_bedrooms vs median_house_value**: El patrón es muy similar al anterior. Se percibe una nube densa y dispersa sin una tendencia definida, con algunos puntos atípicos hacia la derecha (bloques con muchos dormitorios) dispersos en distintos niveles de precio. La asociación visual con la variable objetivo es prácticamente nula.
+
+```{r population vs median_house_value}
+df %>%
+  ggplot(aes(x = population, y = median_house_value)) + geom_point(alpha = 0.4, color = 'darkblue') + labs(x='Población', y = 'Valor medio de la vivienda')+ theme_bw() + facet_grid(.~ 'Dispersión entre población y el valor medio de la vivienda')
+
+```
+
+**population vs median_house_value**: Se observa una nube de puntos muy concentrada en valores bajos de población, con una cola de atípicos que se extiende hacia la derecha (bloques con población extremadamente alta) que no muestran precios particularmente más altos ni más bajos. No hay evidencia visual de una relación lineal entre estas dos variables.
+
+```{r households vs median_house_value}
+df %>%
+  ggplot(aes(x = households, y = median_house_value)) + geom_point(alpha = 0.4, color = 'darkblue') + labs(x='Número de hogares', y = 'Valor medio de la vivienda')+ theme_bw() + facet_grid(.~ 'Dispersión entre número de hogares y el valor medio de la vivienda')
+```
+
+**households vs median_house_value**: Al igual que con `population` y `total_rooms`, la mayoría de los puntos se agrupan en la parte baja del eje X, con atípicos dispersos hacia la derecha. No se aprecia una tendencia lineal clara ni una asociación fuerte con el valor de la vivienda.
+
+```{r longitude vs median_house_value}
+df %>%
+  ggplot(aes(x = longitude, y = median_house_value)) + geom_point(alpha = 0.4, color = 'darkblue') + labs(x='Longitud', y = 'Valor medio de la vivienda')+ theme_bw() + facet_grid(.~ 'Dispersión entre longitud y el valor medio de la vivienda')
+
+```
+
+**longitude vs median_house_value**: Aquí el patrón es distinto a los anteriores; en lugar de una tendencia lineal, se observan agrupaciones o "nubes" de puntos en ciertos rangos de longitud, con valores de vivienda notablemente más altos alrededor de -122° y -118° (coincidiendo con las zonas de la Bahía de San Francisco y Los Ángeles). Esto sugiere que la relación con `median_house_value` no es lineal, sino que refleja la ubicación geográfica de zonas costeras específicas de mayor valor.
+
+```{r latitude vs median_house_value}
+df %>%
+  ggplot(aes(x = latitude, y = median_house_value)) + geom_point(alpha = 0.4, color = 'darkblue') + labs(x='Latitud', y = 'Valor medio de la vivienda')+ theme_bw() + facet_grid(.~ 'Dispersión entre latitud y el valor medio de la vivienda')
+
+```
+
+**latitude vs median_house_value**: Se observan concentraciones de puntos con valores más altos alrededor de las latitudes 34° y 38° (Los Ángeles y la Bahía de San Francisco, respectivamente), y valores más bajos en las latitudes intermedias (zona interior del estado). Cabe anotar que la relación, más que lineal, es de naturaleza geográfica/espacial.
+
+En conclusión, de las variables analizadas, `median_income` es la que muestra la tendencia lineal creciente más clara a simple vista; el resto de variables numéricas (edad, habitaciones, dormitorios, población, hogares) muestran nubes dispersas sin patrón lineal evidente. `longitude` y `latitude`, las cuales podrían considerarse un caso aparte, muestran un comportamiento geográfico por zonas en lugar de una tendencia lineal simple.
+
+A continuación, se comparará el valor medio de la vivienda según la aproximidad al óceano:
+
+```{r bivariado valor proximidad oceano}
+df %>% 
+  group_by(ocean_proximity) %>% 
+  summarise(n=length(median_house_value),
+                 media=mean(median_house_value),
+                 sd=sd(median_house_value),
+                 mediana=median(median_house_value),
+                 RIC=IQR(median_house_value),
+                 Q1=quantile(median_house_value,0.25),
+                 Q3=quantile(median_house_value,0.75),
+                 minimo=min(median_house_value),
+                 maximo=max(median_house_value),
+                 asimetria=skewness(median_house_value),
+                 curtosis=kurtosis(median_house_value))
+```
+
+Se observan diferencias notables en el valor medio de la vivienda según la proximidad al océano. 
+
+La categoría `ISLAND` presenta el promedio más alto ($380.440). Es un resultado que, no obstante, debe interpretarse con extrema cautela, ya que se basa, de acuerdo con la tabla, en 5 observaciones (una cantidad minúscula); en consecuencia, cualquier estadístico calculado para este grupo es altamente inestable y poco representativo.
+
+Excluyendo `ISLAND` por su tamaño muestral insuficiente, las categorías `<1H OCEAN` (240.084), `NEAR BAY` (259.212) y `NEAR OCEAN` (249.434) muestran promedios similares y considerablemente más altos que `INLAND` (124.805), la única categoría que no tiene cercanía directa con el océano. Esta diferencia es la más marcada de toda la tabla, dado que el promedio de `INLAND` es prácticamente la mitad del de las categorías costeras, lo que sugiere que la cercanía al océano es un factor asociado de forma importante con el valor de la vivienda.
+
+En cuanto a la dispersión, `NEAR BAY` presenta el rango intercuartílico más amplio (RIC = 183.200), indicando una mayor heterogeneidad de precios dentro de esa categoría en comparación con `INLAND`, que tiene el RIC más estrecho (71.450), reflejando precios más homogéneos y que se mantienen consistentemente más bajos.
+
+Como complemento a la tabla de resumen estadístico, se construye un diagrama de caja y bigotes para visualizar de forma gráfica las diferencias en el valor medio de la vivienda según la proximidad al océano, permitiendo apreciar de un solo vistazo tanto la posición (mediana, cuartiles) como la dispersión y los valores atípicos de cada categoría.
+
+```{r}
+df %>% 
+ggplot(aes(x=ocean_proximity, y=median_house_value))+
+  geom_boxplot(fill="#54878f", color="black",outlier.color="darkred")+
+  stat_summary(fun=mean, geom='point', shape=20, size=3, color="darkgreen")+
+  theme_minimal()
+```
+
+El boxplot confirma visualmente los patrones descritos en la tabla. La caja de `INLAND` se ubica claramente por debajo de las demás categorías, con una gran cantidad de valores atípicos por encima del bigote superior (los puntos rojos), lo que indica que, si bien la mayoría de las viviendas de zonas interiores tienen precios bajos, existen excepciones puntuales con precios mucho más altos que el resto de su categoría.
+
+La categoría `<1H OCEAN` también muestra presencia de valores atípicos en la parte superior, concentrados cerca del límite de truncamiento de 500.000 ya identificado en el análisis de la variable objetivo. Por su parte, `ISLAND` se representa con una caja alta y sin bigotes visibles ni atípicos, consecuencia directa de contar con solo 5 observaciones. `NEAR BAY` y `NEAR OCEAN` muestran cajas de tamaño y posición similares entre sí, consistente con sus medias y medianas cercanas observadas en la tabla anterior, reforzando la idea de que ambas categorías representan condiciones de mercado inmobiliario comparables.
+
+Como cierre del análisis exploratorio, se utiliza la función `ggpairs()` de la librería GGally, la cual genera una matriz de gráficos que combina, para cada par de variables del conjunto de datos, un diagrama de dispersión (en la parte inferior), el coeficiente de correlación (en la parte superior) y la distribución individual de cada variable (en la diagonal). Su propósito es ofrecer 
+una vista panorámica de todas las relaciones bivariadas del dataset en una sola figura (Emerson et al., 2013) a modo de resumen visual de lo desarrollado en las secciones anteriores.
+
+```{r no se que es eso}
+df %>% 
+  ggpairs()
+```
+
+Si bien `ggpairs()` resulta útil como resumen general, al aplicarlo sobre la totalidad de las variables del conjunto de datos se identifican varios problemas que limitan su utilidad práctica en este trabajo:
+
+En primer lugar, la matriz resultante incluye las 10 variables del dataset, generando una cuadrícula de 100 paneles. Esto provoca que los nombres de las variables en los ejes aparezcan truncados y sean prácticamente ilegibles (por ejemplo, "ng_median", "otal_rooms", "al_bedroo"), dificultando identificar con certeza qué variable representa cada panel.
+
+En segundo lugar, se presenta una redundancia con el análisis ya desarrollado en las secciones anteriores de este documento: tanto la relación de cada variable numérica con `median_house_value` como la relación de `ocean_proximity` con la variable objetivo ya fueron analizadas de forma individual y detallada en el análisis bivariado, por lo que incluir nuevamente toda esta información en un solo gráfico no aporta hallazgos nuevos y sí introduce ruido visual innecesario.
+
+En tercer lugar, se observa un costo computacional elevado: al tratarse de 20.640 observaciones y 100 combinaciones de variables, el tiempo de renderizado del gráfico es considerablemente mayor al de cualquier otro chunk del documento, lo que ralentiza la compilación completa del libro.
+
+Dadas estas limitaciones, se concluye que, si bien `ggpairs()` es una herramienta potente para exploraciones rápidas con pocas variables, su aplicación sobre el conjunto completo de datos en este trabajo resulta poco práctica, y la información relevante que ofrece ya fue cubierta de forma más clara mediante los análisis univariados y bivariados desarrollados en las secciones 
+anteriores.
+

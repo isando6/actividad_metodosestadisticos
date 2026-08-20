@@ -1,0 +1,90 @@
+# Extracción, transformación y carga de datos (ETL) {#intro}
+
+Antes de realizar cualquier análisis exploratorio o estadístico, es necesario garantizar que los datos con los que se trabaja sean confiables, estén completos y en un formato adecuado para su manipulación. 
+
+Este proceso, conocido como **ETL (Extracción, Transformación y Carga)**, constituye la base de todo análisis de datos. Si esta etapa se realiza de forma deficiente, cualquier resultado o interpretación posterior, por más sofisticado que resulte siendo, quedará comprometido. De esta manera, se realizará la carga del conjunto de datos _housing.csv_, la identificación, el tratamiento de valores faltantes y, como último paso, el ajuste de los tipos de variable necesarios para el análisis exploratorio que se desarrollará más adelante.
+
+## Instalación de librerías
+
+En primer lugar, se cargan las librerías necesarias para el desarrollo de este trabajo: `tidyverse` para la manipulación y visualización de datos mediante una sintaxis basada en el operador pipe (`%>%`); `Amelia`, utilizada para la detección visual de datos faltantes a través de la función `missmap()`; `moments`, que permite calcular medidas de forma de la distribución como la asimetría y la curtosis; `patchwork`, empleada para combinar múltiples gráficos de `ggplot2` en una sola figura; y `GGally`, que amplía las capacidades de visualización de `ggplot2` con funciones como `ggpairs()` y `ggcorr()` para el análisis de relaciones entre variables.
+
+```{r libreria}
+library(tidyverse)
+library(Amelia)
+library(moments)
+library(patchwork) 
+library(GGally)
+```
+
+## Carga del conjunto de datos `housing.csv`
+
+Luego, se procede a cargar el conjunto de datos `housing.csv`, correspondiente a información de bloques censales de California, con variables geográficas, demográficas, habitacionales y el valor medio de las viviendas:
+
+```{r dataaaa}
+data <- read.csv("C:/Users/SENA/Downloads/metodosestadisticosclase2/housing.csv")
+```
+
+## Visualización del conjunto de datos y su estructura
+
+No resulta convenviente visualizar el conjunto de datos, de 20.640 observaciones, en su totalidad, debido al gran volumen que representan estas. Por ello, para no perder la buena práctica de verificar que la carga se haya hecho de una forma correcta y tener una primera aproximación a las variables disponibles, se muestran únicamente las primeras cinco filas:
+
+```{r visualizacion de tabla}
+head(data,n=5)
+```
+
+Conviene, además, revisar la estructura interna de los datos (tipo de dato asignado a cada variable), ya que de esto depende qué operaciones y transformaciones son válidas para cada una.
+
+```{r estructura de la data}
+str(data)
+```
+
+## Identificación de valores faltantes (NA)
+
+Uno de los pasos más importantes de esta etapa es identificar la presencia de valores faltantes (NA).
+
+En este contexto, ignorar los datos faltantes podría sesgar las estadísticas descriptivas y los análisis posteriores, especialmente si la ausencia de datos no ocurre de forma aleatoria (por ejemplo, si ciertos bloques censales reportan sistemáticamente menos información). Así, se cuantifica primero el número de valores faltantes por columna:
+
+```{r datos faltantes opcion1}
+data %>%
+  summarise(across(everything(), ~sum(is.na(.)),.names="NA_{.col}"))
+```
+
+Con ayuda de la librería `Amelia` es posible visualizar de forma gráfica la ubicación y proporción de los valores faltantes en todo el conjunto de datos, recurso que complementa el conteo numérico anterior y facilita identificar si los datos faltantes se concentran en alguna variable o zona específica del dataset.
+
+
+```{r datos faltantes opcion2}
+missmap(data)
+```
+
+## Imputación de datos faltantes
+
+Una vez identificados los valores faltantes, se procede a su imputación, proceso que consiste en reemplazarlos por un valor estimado en lugar de eliminarlos. 
+
+Se optó por esta vía de resolución pues al eliminar filas con datos redundantes el tamaño de la muestra se reduciría, decisión que podría introducir sesgo si la ausencia de datos no es una cuestión asociada al azar del todo. 
+
+En concreto, se utiliza la media de cada variable numérica para reemplazar sus respectivos valores faltantes, un método sencillo y de uso extendido en la literatura (Little & Rubin, 2019) que preserva el tamaño original de la muestra sin alterar de forma significativa la tendencia central de las variables.
+
+```{r imputación de datos}
+data %>% 
+  mutate(across(
+    where(is.numeric),
+    ~ ifelse(is.na(.),mean(.,na.rm=TRUE),.)
+  )) -> df
+```
+
+Se verifica que la imputación se haya llevado a cabo con éxito:
+
+```{r}
+df %>%
+  summarise(across(everything(), ~sum(is.na(.)),.names="NA_{.col}"))
+```
+
+En efecto, el conteo de valores NA por columna es cero en todas las variables, lo que confirma que la imputación fue exitosa. 
+
+## Conversión de variable tipo texto a factor
+
+Como último paso, se convierte la variable `ocean_proximity`, almacenada como texto libre sin estructura (character), a tipo factor. Esta conversión permite que R la reconozca para su uso en resúmenes estadísticos, visualizaciones y eventuales modelos.
+
+```{r conversión a factor de ocean_proximity}
+df$ocean_proximity <- factor (df$ocean_proximity)
+```

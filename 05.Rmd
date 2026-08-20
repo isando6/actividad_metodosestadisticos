@@ -1,0 +1,20 @@
+# Correlación entre variables independientes
+
+Se utilizó un mapa de calor de correlaciones (`ggcorr`) en lugar de una tabla de coeficientes, ya que permite identificar de un vistazo tanto la fuerza como la dirección de la relación entre las ocho variables numéricas independientes, usando el color como codificación visual (azul intenso = correlación positiva fuerte, rojo intenso = correlación negativa fuerte, blanco = relación prácticamente nula).
+
+```{r heatmap}
+df %>%
+  select(where(is.numeric), -median_house_value) %>%
+  ggcorr(label = TRUE, label_round = 2, hjust = 0.75, size = 3,
+         low = "#d62728", mid = "white", high = "#1f77b4") +
+  labs(title = "Correlación entre variables independientes")
+```
+
+El análisis de la matriz de correlación permite identificar cuatro patrones principales en las relaciones entre las variables del conjunto de datos.
+
+El hallazgo más claro es la presencia de un bloque con correlaciones sumamente altas entre `total_rooms`, `total_bedrooms`, `population` y `households`, cuyos coeficientes oscilan entre 0.86 y 0.97. Este comportamiento es esperable, ya que las cuatro variables miden, desde distintas perspectivas, el volumen general del bloque censal; un área con mayor número de viviendas alberga de forma natural a más habitantes y requiere una mayor cantidad de habitaciones y dormitorios. Por el contrario, la variable `median_income` no muestra una relación lineal relevante con este grupo de variables de volumen, registrando correlaciones de entre -0.01 y 0.20, lo que indica que el nivel de ingreso mediano de los hogares opera como una dimensión socioeconómica autónoma independiente en su totalidad del tamaño o la densidad del bloque.
+
+La variable `housing_median_age` presenta una correlación negativa leve a moderada con las variables de volumen, situándose entre -0.30 y -0.36. Este patrón refleja una dinámica urbana donde las zonas con edificaciones más antiguas tienden a ser ligeramente más pequeñas y menos densas que los desarrollos residenciales más recientes. 
+
+Finalmente, la fuerte correlación negativa entre `latitude` y `longitude` (-0.92) responde a un factor, como se señaló previamente, geográfico; la disposición diagonal del estado de California hace que avanzar hacia el norte (mayor latitud) implique desplazarse de manera sistemática hacia el oeste (longitud más negativa).
+

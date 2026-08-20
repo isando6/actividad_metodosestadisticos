@@ -1,0 +1,123 @@
+# Análisis exploratorio bivariado de las variables generadas por ingeniería de características
+
+De la misma manera en que se evaluó la relación entre las variables originales y `median_house_value`, se repite este análisis para las variables generadas en la etapa de ingeniería de características: `rooms_per_household`, `bedrooms_per_room`, `population_per_household`, `log_median_income`, `age_category` y `dist_min_centro`. 
+
+El objetivo es verificar si las transformaciones realizadas lograron capturar de forma más clara la relación con la variable objetivo, en comparación con las variables originales de las que provienen.
+
+Previo a la examinación de cada relación de forma individual, se construye un mapa de calor entre las variables númericas generadas y `median_house_value`, con el fin de obtener una visión comparativa rápida de qué transformaciones lograron capturar una asociación lineal más fuerte con la variable objetivo.
+
+```{r heatmap con las variables resultantes de la ingeniería de características}
+
+df %>%
+  select(rooms_per_household, bedrooms_per_room, population_per_household,
+         log_median_income, dist_min_centro, median_house_value) %>%
+  ggcorr(label = TRUE, label_round = 2, hjust = 0.75, size = 3,
+         low = "#d62728", mid = "white", high = "#1f77b4") +
+  labs(title = "Correlación entre las variables generadas y median_house_value")
+
+```
+
+El mapa de calor, de forma cuantitativa, reafirma los patrones observados en los diagramas de dispersión individuales. 
+
+`log_median_income` presenta la correlación más fuerte con `median_house_value` (r=0.65), seguida de `dist_min_centro`con una correlación negativa moderada (r=-0.44). Las tres variables de proporción muestran correlaciones considerablemente más débiles: `bedrooms_per_room` (r=-0.22), `rooms_per_household` (r=0.15) y `population_per_household` (prácticamente nula, con un r=-0.02). 
+
+En adición, el mapa muestra que las variables predictoras entre sí presentan correlaciones bajas a moderadas (por ejemplo, `rooms_per_household` y `population_per_household` con r= 0.31), lo que sugiere que el problema de redundancia, al que se ha referido previamente en este ejercicio con el término de "multicolinealidad", se redujo de forma considerable tras la transformación a variables de proporción.
+
+## Variables de proporción
+
+Se analiza, en primer lugar la relación entre `median_house_value` y las tres variables de proporción creadas a partir del bloque de variables con multicolinealidad (`total_rooms`, `total_bedrooms`, `population` y `households`): `rooms_per_household`, `bedrooms_per_room` y 
+`population_per_household`. 
+
+```{r rph vs mhv}
+df %>%
+  ggplot(aes(x = rooms_per_household, y = median_house_value)) + 
+  geom_point(alpha = 0.4, color = 'darkblue') + 
+  labs(x='Habitaciones por hogar', y = 'Valor medio de la vivienda') + 
+  theme_bw() + 
+  facet_grid(.~ 'Dispersión entre habitaciones por hogar y el valor medio de la vivienda')
+```
+
+**rooms_per_household vs median_house_value**: Se observa una relación positiva débil (r = 0,15), más clara que la de `total_rooms` en su forma original (donde la asociación visual era prácticamente nula). La mayoría de los puntos se concentran entre 3 y 8 habitaciones por hogar, con una cola de valores atípicos que se extiende hasta más de 140 (resultado de bloques con un número de hogares anormalmente bajo, tal y como se identificó en el análisis univariado). 
+
+A pesar de la mejora respecto a la variable original, la relación sigue siendo débil para considerarse un buen predictor por sí sola.
+
+```{r bpr vs mhv}
+df %>%
+  ggplot(aes(x = bedrooms_per_room, y = median_house_value)) + 
+  geom_point(alpha = 0.4, color = 'darkblue') + 
+  labs(x='Proporción de dormitorios sobre habitaciones', y = 'Valor medio de la vivienda') + 
+  theme_bw() + 
+  facet_grid(.~ 'Dispersión entre proporción de dormitorios y el valor medio de la vivienda')
+```
+
+**bedroom_per_room vs median_house_value**: La nube de puntos se concentra de forma muy densa en la zona baja del eje X (entre 0.1 y 0.3 aprox.), con una cola de valores atípicos que se extiende de forma gradual hasta más de 3. A simple vista no se aprecia una tendencia clara: para el rango donde se concentra la mayoría de los datos, el valor de la vivienda cubre prácticamente todo el rango posible (desde cerca de 0 hasta el límite de truncamiento de 500.000), sin que un aumento en la proporción de dormitorios se asocie visualmente con precios sistemáticamente más altos o más bajos. Esto sugiere que, si existe una relación negativa entre estas variables (r=-0.22), esta es débil a moderada y queda parcialmente enmascarada por la alta densidad de puntos en el extremo inferior del eje X, más que representar un patrón visualmente evidente como el observado en `median_income`.
+
+```{r pph vs mhv }
+df %>%
+  ggplot(aes(x = population_per_household, y = median_house_value)) + 
+  geom_point(alpha = 0.4, color = 'darkblue') + 
+  labs(x='Habitantes por hogar', y = 'Valor medio de la vivienda') + 
+  theme_bw() + 
+  facet_grid(.~ 'Dispersión entre habitantes por hogar y el valor medio de la vivienda')
+```
+
+**population_per_household vs median_house_value**: El gráfico se ve dominado por el valor atípico extremo ya identificado en el análisis univariado (máximo de 1.243 habitantes por hogar), el cual comprime la escala del eje X y deja a la enorme mayoría de los puntos amontonados contra el borde izquierdo del gráfico. Los pocos bloques con valores altos de esta variable aparecen tanto en la zona alta como en la baja del eje Y. Esto último sugiere que esta variable, en su forma actual, no aporta una señal útil como predictor.
+
+
+## Transformación de `median_income`
+
+```{r lmi vs mhv}
+df %>% 
+  ggplot(aes(x= log_median_income, y= median_house_value)) + geom_point(alpha= 0.4, color= 'dark blue') + labs(x= 'Logaritmo de ingreso medio', y= 'Valor medio de la vivienda')+ theme_bw() + facet_grid(.~'Dispersión entre logaritmo del ingreso medio y el valor medio de la vivienda')
+```
+
+**log_median_income vs median_house_value**: Del mismo modo que en `median_income`, hay una relación positiva (r=0.65); se conserva la línea horizontal de puntos en 500.000 y se observan ciertas líneas horizontales tenues en valores intermedios de Y. En esta misma línea, respecto al gráfico de `median_income` sin transformar, aquí la nube de puntos se ve más compacta y menos "abierta" hacia la derecha, lo que sugiere una relación más homógenea a lo largo de todo el rango de la variable transformada.
+
+## Categorización de `housing_median_age`
+
+Antes de visualizar la relación de forma gráfica, se calcula un resumen estadístico de `median_house_value` agrupado por cada categoría de `age_category` para así contar con cifras exactas que respalden la interpretación visual del boxplot.
+
+``` {r resumen ac}
+df %>% 
+  group_by(age_category) %>% 
+  summarise(n = length(median_house_value),
+            media = mean(median_house_value),
+            sd = sd(median_house_value),
+            mediana = median(median_house_value),
+            RIC = IQR(median_house_value),
+            Q1 = quantile(median_house_value, 0.25),
+            Q3 = quantile(median_house_value, 0.75))
+```
+
+La media y la mediana de `median_house_value` aumentan de forma progresiva a medida que avanza la categoría de antigüedad. La media pasa de 193.276 en "Nueva (0-18)" a 205.137 en "Reciente (19-29)"; 206.780 en "Madura (30-37)" y 223.416 en "Antigua (38-52)", un incremento de aproximadamente $30.000 entre el grupo más joven y el más antiguo. El mismo patrón se repite en la mediana (de 167.300 a 187.500).
+
+En cuanto a la dispersión, "Antigua" presenta también el rango intercuartílico más amplio (RIC = 180.800, frente a 126.775-150.400 en las demás categorías), lo que anticipa una caja notablemente más ancha en el boxplot, pues los bloques censales con viviendas más antiguas, aparte de tender a valores más altos en promedio, muestran mayor heterogeneidad de precios dentro del grupo. Las categorías "Reciente" y "Madura" presentan estadísticos muy similares entre sí (medias de 205.137 y 206.780, medianas de 184.100 y 182.100).
+
+Como complemento a la tabla de resumen, se construye un diagrama de caja y bigotes para visualizar, mediante gráficos, las diferencias en el valor medio de la vivienda según la categoría de antigüedad.
+
+```{r ac vs mhv}
+df %>%
+  ggplot(aes(x = age_category, y = median_house_value)) +
+  geom_boxplot(fill = "#54878f", color = "black", outlier.color = "darkred") +
+  stat_summary(fun = mean, geom = 'point', shape = 20, size = 3, color = "darkgreen") +
+  labs(x = 'Categoría de antigüedad', y = 'Valor medio de la vivienda') +
+  theme_minimal()
+```
+
+**age_category vs median_house_value**: El gráfico muestra que el valor medio de la vivienda incrementa ligeramente a medida que aumenta su antigüedad, alcanzando la mediana más alta en la categoría "Antigua (38-52)". La dispersión de los precios en el 50% central es más amplia en las propiedades antiguas, superando en variabilidad a las construcciones más recientes. En todos los grupos, el promedio (punto verde) se ubica por encima de la mediana, confirmando una asimetría positiva constante. Asimismo, las viviendas de menor antigüedad concentran una clara presencia de valores atípicos en $500.000 USD, mientras que en las más antiguas estos precios quedan dentro del bigote superior.
+
+
+## Distancia a centros económicos
+
+```{r dmc vs mhv}
+df %>%
+  ggplot(aes(x = dist_min_centro, y = median_house_value)) + 
+  geom_point(alpha = 0.4, color = 'darkblue') + 
+  labs(x='Distancia al centro económico más cercano', y = 'Valor medio de la vivienda') + 
+  theme_bw() + 
+  facet_grid(.~ 'Dispersión entre distancia al centro económico y el valor medio de la vivienda')
+```
+
+**dist_min_centro vs median_house_value**: Se observa una relación negativa moderada (r=-0.44); a mayor distancia respecto a Los Ángeles o San Francisco, el valor mediano de la vivienda tiende a disminuir, consistente con el patron geográfico ya identificado en el análisis bivariado de `longitude` y `latitude`. 
+
+El patrón es visible a partir de una distancia aproximada a 2, y a partir de ese punto la nube se comprime hacia valores bajos y medios, con muy pocos bloques censales alejados que alcancen precios altos, confirmando así que resumir las variables geográficas en una sola medida de distancia logra retratar una tendencia con mayor facilidad de interpretación que las coordenadas originales por separado.

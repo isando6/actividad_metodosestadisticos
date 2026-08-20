@@ -4,26 +4,24 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Análisis de la variable median_house_value | Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’</title>
-  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <title>2 Análisis de la variable median_house_value | index.knit</title>
+  <meta name="description" content="" />
   <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Análisis de la variable median_house_value | Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’" />
+  <meta property="og:title" content="2 Análisis de la variable median_house_value | index.knit" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  
+  
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Análisis de la variable median_house_value | Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’" />
+  <meta name="twitter:title" content="2 Análisis de la variable median_house_value | index.knit" />
   
-  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
   
 
-<meta name="author" content="Karina Núñez Sarmiento, Isabella Sandoval Escorcia" />
 
 
-<meta name="date" content="2026-08-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -140,63 +138,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Trabajo de métodos estadísticos</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Extracción, transformación y carga de datos (ETL)</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="introducción.html"><a href="introducción.html#contexto-del-problema"><i class="fa fa-check"></i><b>1.1</b> Contexto del problema</a></li>
-<li class="chapter" data-level="1.2" data-path="introducción.html"><a href="introducción.html#variables-del-conjunto-de-datos"><i class="fa fa-check"></i><b>1.2</b> Variables del conjunto de datos</a></li>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#instalaci%C3%B3n-de-librer%C3%ADas"><i class="fa fa-check"></i><b>1.1</b> Instalación de librerías</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#carga-del-conjunto-de-datos-housing.csv"><i class="fa fa-check"></i><b>1.2</b> Carga del conjunto de datos <code>housing.csv</code></a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#visualizaci%C3%B3n-del-conjunto-de-datos-y-su-estructura"><i class="fa fa-check"></i><b>1.3</b> Visualización del conjunto de datos y su estructura</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#identificaci%C3%B3n-de-valores-faltantes-na"><i class="fa fa-check"></i><b>1.4</b> Identificación de valores faltantes (NA)</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#imputaci%C3%B3n-de-datos-faltantes"><i class="fa fa-check"></i><b>1.5</b> Imputación de datos faltantes</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#conversi%C3%B3n-de-variable-tipo-texto-a-factor"><i class="fa fa-check"></i><b>1.6</b> Conversión de variable tipo texto a factor</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Extracción, transformación y carga de datos (ETL)</a>
+<li class="chapter" data-level="2" data-path="análisis-de-la-variable-median_house_value.html"><a href="análisis-de-la-variable-median_house_value.html"><i class="fa fa-check"></i><b>2</b> Análisis de la variable <code>median_house_value</code></a></li>
+<li class="chapter" data-level="3" data-path="análisis-de-las-variables-características-independientes.html"><a href="análisis-de-las-variables-características-independientes.html"><i class="fa fa-check"></i><b>3</b> Análisis de las variables características (independientes)</a></li>
+<li class="chapter" data-level="4" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html"><i class="fa fa-check"></i><b>4</b> Análisis exploratorio bivariado</a></li>
+<li class="chapter" data-level="5" data-path="correlación-entre-variables-independientes.html"><a href="correlación-entre-variables-independientes.html"><i class="fa fa-check"></i><b>5</b> Correlación entre variables independientes</a></li>
+<li class="chapter" data-level="6" data-path="ingeniería-de-características.html"><a href="ingeniería-de-características.html"><i class="fa fa-check"></i><b>6</b> Ingeniería de características</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#instalaci%C3%B3n-de-librer%C3%ADas"><i class="fa fa-check"></i><b>2.1</b> Instalación de librerías</a></li>
-<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#carga-del-conjunto-de-datos-housing.csv"><i class="fa fa-check"></i><b>2.2</b> Carga del conjunto de datos <code>housing.csv</code></a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#visualizaci%C3%B3n-del-conjunto-de-datos-y-su-estructura"><i class="fa fa-check"></i><b>2.3</b> Visualización del conjunto de datos y su estructura</a></li>
-<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#identificaci%C3%B3n-de-valores-faltantes-na"><i class="fa fa-check"></i><b>2.4</b> Identificación de valores faltantes (NA)</a></li>
-<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#imputaci%C3%B3n-de-datos-faltantes"><i class="fa fa-check"></i><b>2.5</b> Imputación de datos faltantes</a></li>
-<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#conversi%C3%B3n-de-variable-tipo-texto-a-factor"><i class="fa fa-check"></i><b>2.6</b> Conversión de variable tipo texto a factor</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="análisis-de-la-variable-median_house_value.html"><a href="análisis-de-la-variable-median_house_value.html"><i class="fa fa-check"></i><b>3</b> Análisis de la variable <code>median_house_value</code></a></li>
-<li class="chapter" data-level="4" data-path="análisis-de-las-variables-características-independientes.html"><a href="análisis-de-las-variables-características-independientes.html"><i class="fa fa-check"></i><b>4</b> Análisis de las variables características (independientes)</a></li>
-<li class="chapter" data-level="5" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html"><i class="fa fa-check"></i><b>5</b> Análisis exploratorio bivariado</a></li>
-<li class="chapter" data-level="6" data-path="correlación-entre-variables-independientes.html"><a href="correlación-entre-variables-independientes.html"><i class="fa fa-check"></i><b>6</b> Correlación entre variables independientes</a></li>
-<li class="chapter" data-level="7" data-path="ingeniería-de-características.html"><a href="ingeniería-de-características.html"><i class="fa fa-check"></i><b>7</b> Ingeniería de características</a>
+<li class="chapter" data-level="6.1" data-path="ingeniería-de-características.html"><a href="ingeniería-de-características.html#variables-de-proporci%C3%B3n"><i class="fa fa-check"></i><b>6.1</b> Variables de proporción</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="ingeniería-de-características.html"><a href="ingeniería-de-características.html#variables-de-proporci%C3%B3n"><i class="fa fa-check"></i><b>7.1</b> Variables de proporción</a>
-<ul>
-<li class="chapter" data-level="7.1.1" data-path="ingeniería-de-características.html"><a href="ingeniería-de-características.html#transformaci%C3%B3n-de-median_income"><i class="fa fa-check"></i><b>7.1.1</b> Transformación de <code>median_income</code></a></li>
-<li class="chapter" data-level="7.1.2" data-path="ingeniería-de-características.html"><a href="ingeniería-de-características.html#categorizaci%C3%B3n-de-housing_median_age"><i class="fa fa-check"></i><b>7.1.2</b> Categorización de <code>housing_median_age</code></a></li>
-<li class="chapter" data-level="7.1.3" data-path="ingeniería-de-características.html"><a href="ingeniería-de-características.html#distancia-a-centros-econ%C3%B3micos"><i class="fa fa-check"></i><b>7.1.3</b> Distancia a centros económicos</a></li>
+<li class="chapter" data-level="6.1.1" data-path="ingeniería-de-características.html"><a href="ingeniería-de-características.html#transformaci%C3%B3n-de-median_income"><i class="fa fa-check"></i><b>6.1.1</b> Transformación de <code>median_income</code></a></li>
+<li class="chapter" data-level="6.1.2" data-path="ingeniería-de-características.html"><a href="ingeniería-de-características.html#categorizaci%C3%B3n-de-housing_median_age"><i class="fa fa-check"></i><b>6.1.2</b> Categorización de <code>housing_median_age</code></a></li>
+<li class="chapter" data-level="6.1.3" data-path="ingeniería-de-características.html"><a href="ingeniería-de-características.html#distancia-a-centros-econ%C3%B3micos"><i class="fa fa-check"></i><b>6.1.3</b> Distancia a centros económicos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><a href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><i class="fa fa-check"></i><b>8</b> Análisis exploratorio bivariado de las variables generadas por ingeniería de características</a>
+<li class="chapter" data-level="7" data-path="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><a href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><i class="fa fa-check"></i><b>7</b> Análisis exploratorio bivariado de las variables generadas por ingeniería de características</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><a href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html#variables-de-proporci%C3%B3n-1"><i class="fa fa-check"></i><b>8.1</b> Variables de proporción</a></li>
-<li class="chapter" data-level="8.2" data-path="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><a href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html#transformaci%C3%B3n-de-median_income-1"><i class="fa fa-check"></i><b>8.2</b> Transformación de <code>median_income</code></a></li>
-<li class="chapter" data-level="8.3" data-path="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><a href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html#categorizaci%C3%B3n-de-housing_median_age-1"><i class="fa fa-check"></i><b>8.3</b> Categorización de <code>housing_median_age</code></a></li>
-<li class="chapter" data-level="8.4" data-path="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><a href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html#distancia-a-centros-econ%C3%B3micos-1"><i class="fa fa-check"></i><b>8.4</b> Distancia a centros económicos</a></li>
+<li class="chapter" data-level="7.1" data-path="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><a href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html#variables-de-proporci%C3%B3n-1"><i class="fa fa-check"></i><b>7.1</b> Variables de proporción</a></li>
+<li class="chapter" data-level="7.2" data-path="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><a href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html#transformaci%C3%B3n-de-median_income-1"><i class="fa fa-check"></i><b>7.2</b> Transformación de <code>median_income</code></a></li>
+<li class="chapter" data-level="7.3" data-path="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><a href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html#categorizaci%C3%B3n-de-housing_median_age-1"><i class="fa fa-check"></i><b>7.3</b> Categorización de <code>housing_median_age</code></a></li>
+<li class="chapter" data-level="7.4" data-path="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><a href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html#distancia-a-centros-econ%C3%B3micos-1"><i class="fa fa-check"></i><b>7.4</b> Distancia a centros económicos</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html"><i class="fa fa-check"></i><b>9</b> Comparación de presión sistólica vs. diastólica</a>
+<li class="chapter" data-level="8" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html"><i class="fa fa-check"></i><b>8</b> Comparación de presión sistólica vs. diastólica</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#librer%C3%ADas"><i class="fa fa-check"></i><b>9.1</b> Librerías</a></li>
-<li class="chapter" data-level="9.2" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#carga-de-datos"><i class="fa fa-check"></i><b>9.2</b> Carga de datos</a></li>
-<li class="chapter" data-level="9.3" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#transformaci%C3%B3n-de-los-datos"><i class="fa fa-check"></i><b>9.3</b> Transformación de los datos</a></li>
-<li class="chapter" data-level="9.4" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#verificaci%C3%B3n-de-datos-faltantes"><i class="fa fa-check"></i><b>9.4</b> Verificación de datos faltantes</a></li>
-<li class="chapter" data-level="9.5" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#resumen-exploratorio"><i class="fa fa-check"></i><b>9.5</b> Resumen exploratorio</a>
+<li class="chapter" data-level="8.1" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#librer%C3%ADas"><i class="fa fa-check"></i><b>8.1</b> Librerías</a></li>
+<li class="chapter" data-level="8.2" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#carga-de-datos"><i class="fa fa-check"></i><b>8.2</b> Carga de datos</a></li>
+<li class="chapter" data-level="8.3" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#transformaci%C3%B3n-de-los-datos"><i class="fa fa-check"></i><b>8.3</b> Transformación de los datos</a></li>
+<li class="chapter" data-level="8.4" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#verificaci%C3%B3n-de-datos-faltantes"><i class="fa fa-check"></i><b>8.4</b> Verificación de datos faltantes</a></li>
+<li class="chapter" data-level="8.5" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#resumen-exploratorio"><i class="fa fa-check"></i><b>8.5</b> Resumen exploratorio</a>
 <ul>
-<li class="chapter" data-level="9.5.1" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#histograma-comparativo"><i class="fa fa-check"></i><b>9.5.1</b> Histograma comparativo</a></li>
-<li class="chapter" data-level="9.5.2" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#boxplot-comparativo"><i class="fa fa-check"></i><b>9.5.2</b> Boxplot comparativo</a></li>
+<li class="chapter" data-level="8.5.1" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#histograma-comparativo"><i class="fa fa-check"></i><b>8.5.1</b> Histograma comparativo</a></li>
+<li class="chapter" data-level="8.5.2" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#boxplot-comparativo"><i class="fa fa-check"></i><b>8.5.2</b> Boxplot comparativo</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#supuesto-de-normalidad"><i class="fa fa-check"></i><b>9.6</b> Supuesto de normalidad</a></li>
-<li class="chapter" data-level="9.7" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#supuesto-de-homocedasticidad"><i class="fa fa-check"></i><b>9.7</b> Supuesto de homocedasticidad</a>
+<li class="chapter" data-level="8.6" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#supuesto-de-normalidad"><i class="fa fa-check"></i><b>8.6</b> Supuesto de normalidad</a></li>
+<li class="chapter" data-level="8.7" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#supuesto-de-homocedasticidad"><i class="fa fa-check"></i><b>8.7</b> Supuesto de homocedasticidad</a>
 <ul>
-<li class="chapter" data-level="9.7.1" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#demostraci%C3%B3n-de-var.test-paso-a-paso"><i class="fa fa-check"></i><b>9.7.1</b> Demostración de var.test paso a paso</a></li>
+<li class="chapter" data-level="8.7.1" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#demostraci%C3%B3n-de-var.test-paso-a-paso"><i class="fa fa-check"></i><b>8.7.1</b> Demostración de var.test paso a paso</a></li>
 </ul></li>
-<li class="chapter" data-level="9.8" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#verificaci%C3%B3n-con-t.test"><i class="fa fa-check"></i><b>9.8</b> Verificación con <code>t.test()</code></a>
+<li class="chapter" data-level="8.8" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#verificaci%C3%B3n-con-t.test"><i class="fa fa-check"></i><b>8.8</b> Verificación con <code>t.test()</code></a>
 <ul>
-<li class="chapter" data-level="9.8.1" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#verificaci%C3%B3n-de-t.test-manual"><i class="fa fa-check"></i><b>9.8.1</b> Verificación de t.test manual</a></li>
+<li class="chapter" data-level="8.8.1" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#verificaci%C3%B3n-de-t.test-manual"><i class="fa fa-check"></i><b>8.8.1</b> Verificación de t.test manual</a></li>
 </ul></li>
-<li class="chapter" data-level="9.9" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#tama%C3%B1o-del-efecto"><i class="fa fa-check"></i><b>9.9</b> Tamaño del efecto</a></li>
+<li class="chapter" data-level="8.9" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#tama%C3%B1o-del-efecto"><i class="fa fa-check"></i><b>8.9</b> Tamaño del efecto</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i><b>10</b> Referencias</a></li>
+<li class="chapter" data-level="9" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i><b>9</b> Referencias</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -209,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
           </h1>
         </div>
 
@@ -217,47 +210,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="análisis-de-la-variable-median_house_value" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> Análisis de la variable <code>median_house_value</code><a href="análisis-de-la-variable-median_house_value.html#an%C3%A1lisis-de-la-variable-median_house_value" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="análisis-de-la-variable-median_house_value" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Análisis de la variable <code>median_house_value</code><a href="análisis-de-la-variable-median_house_value.html#an%C3%A1lisis-de-la-variable-median_house_value" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Antes de explorar las posibles relaciones entre las variables predictoras y el valor de las viviendas, es fundamental comprender el comportamiento de la variable objetivo (target) por sí sola. Conocer su tendencia central, dispersión y forma de distribución facilita la anticipación de posibles dificultades para el análisis posterior (como la presencia de asimetría, valores atípicos o truncamientos en los datos) y sienta las bases para interpretar correctamente los resultados de las secciones siguientes.</p>
 <p>Se calcula un resumen estadístico completo de <code>median_house_value</code>, incluyendo medidas de tendencia central (media, mediana), de dispersión (desviación estándar, rango intercuartílico) y de forma de la distribución (asimetría, curtosis), <strong>con el fin de caracterizar numéricamente el comportamiento de la variable antes de analizarla visualmente.</strong></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="análisis-de-la-variable-median_house_value.html#cb28-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb28-2"><a href="análisis-de-la-variable-median_house_value.html#cb28-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">length</span>(median_house_value),</span>
-<span id="cb28-3"><a href="análisis-de-la-variable-median_house_value.html#cb28-3" tabindex="-1"></a>                 <span class="at">media=</span><span class="fu">mean</span>(median_house_value),</span>
-<span id="cb28-4"><a href="análisis-de-la-variable-median_house_value.html#cb28-4" tabindex="-1"></a>                 <span class="at">sd=</span><span class="fu">sd</span>(median_house_value),</span>
-<span id="cb28-5"><a href="análisis-de-la-variable-median_house_value.html#cb28-5" tabindex="-1"></a>                 <span class="at">mediana=</span><span class="fu">median</span>(median_house_value),</span>
-<span id="cb28-6"><a href="análisis-de-la-variable-median_house_value.html#cb28-6" tabindex="-1"></a>                 <span class="at">RIC=</span><span class="fu">IQR</span>(median_house_value),</span>
-<span id="cb28-7"><a href="análisis-de-la-variable-median_house_value.html#cb28-7" tabindex="-1"></a>                 <span class="at">Q1=</span><span class="fu">quantile</span>(median_house_value,<span class="fl">0.25</span>),</span>
-<span id="cb28-8"><a href="análisis-de-la-variable-median_house_value.html#cb28-8" tabindex="-1"></a>                 <span class="at">Q3=</span><span class="fu">quantile</span>(median_house_value,<span class="fl">0.75</span>),</span>
-<span id="cb28-9"><a href="análisis-de-la-variable-median_house_value.html#cb28-9" tabindex="-1"></a>                 <span class="at">minimo=</span><span class="fu">min</span>(median_house_value),</span>
-<span id="cb28-10"><a href="análisis-de-la-variable-median_house_value.html#cb28-10" tabindex="-1"></a>                 <span class="at">maximo=</span><span class="fu">max</span>(median_house_value),</span>
-<span id="cb28-11"><a href="análisis-de-la-variable-median_house_value.html#cb28-11" tabindex="-1"></a>                 <span class="at">asimetria=</span><span class="fu">skewness</span>(median_house_value),</span>
-<span id="cb28-12"><a href="análisis-de-la-variable-median_house_value.html#cb28-12" tabindex="-1"></a>                 <span class="at">curtosis=</span><span class="fu">kurtosis</span>(median_house_value))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="análisis-de-la-variable-median_house_value.html#cb27-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="análisis-de-la-variable-median_house_value.html#cb27-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">length</span>(median_house_value),</span>
+<span id="cb27-3"><a href="análisis-de-la-variable-median_house_value.html#cb27-3" tabindex="-1"></a>                 <span class="at">media=</span><span class="fu">mean</span>(median_house_value),</span>
+<span id="cb27-4"><a href="análisis-de-la-variable-median_house_value.html#cb27-4" tabindex="-1"></a>                 <span class="at">sd=</span><span class="fu">sd</span>(median_house_value),</span>
+<span id="cb27-5"><a href="análisis-de-la-variable-median_house_value.html#cb27-5" tabindex="-1"></a>                 <span class="at">mediana=</span><span class="fu">median</span>(median_house_value),</span>
+<span id="cb27-6"><a href="análisis-de-la-variable-median_house_value.html#cb27-6" tabindex="-1"></a>                 <span class="at">RIC=</span><span class="fu">IQR</span>(median_house_value),</span>
+<span id="cb27-7"><a href="análisis-de-la-variable-median_house_value.html#cb27-7" tabindex="-1"></a>                 <span class="at">Q1=</span><span class="fu">quantile</span>(median_house_value,<span class="fl">0.25</span>),</span>
+<span id="cb27-8"><a href="análisis-de-la-variable-median_house_value.html#cb27-8" tabindex="-1"></a>                 <span class="at">Q3=</span><span class="fu">quantile</span>(median_house_value,<span class="fl">0.75</span>),</span>
+<span id="cb27-9"><a href="análisis-de-la-variable-median_house_value.html#cb27-9" tabindex="-1"></a>                 <span class="at">minimo=</span><span class="fu">min</span>(median_house_value),</span>
+<span id="cb27-10"><a href="análisis-de-la-variable-median_house_value.html#cb27-10" tabindex="-1"></a>                 <span class="at">maximo=</span><span class="fu">max</span>(median_house_value),</span>
+<span id="cb27-11"><a href="análisis-de-la-variable-median_house_value.html#cb27-11" tabindex="-1"></a>                 <span class="at">asimetria=</span><span class="fu">skewness</span>(median_house_value),</span>
+<span id="cb27-12"><a href="análisis-de-la-variable-median_house_value.html#cb27-12" tabindex="-1"></a>                 <span class="at">curtosis=</span><span class="fu">kurtosis</span>(median_house_value))</span></code></pre></div>
 <pre><code>##       n    media       sd mediana    RIC     Q1     Q3 minimo maximo asimetria curtosis
 ## 1 20640 206855.8 115395.6  179700 145125 119600 264725  14999 500001 0.9776922   3.3275</code></pre>
 <p>El conjunto de datos contiene 20.640 observaciones (bloques censales), cada una caracterizada por el valor mediano de las viviendas que agrupa. Este valor tiene un promedio de 206.855 dólares, con una desviación estándar de 115.395. La mediana se ubica en 179.700, es decir, el 50% de los bloques censales presenta un valor mediano de vivienda igual o inferior a esta cifra. El rango intercuartílico es de 145.125; el 25% de los bloques censales tiene un valor mediano igual o inferior a 119.600 (Q1); el 75% se encuentra por debajo o igual a 264.725 (Q3).</p>
 <p>Para complementar el resumen numérico, se visualiza la distribución completa de <code>median_house_value</code> mediante un histograma con una curva de densidad superpuesta. Esta visualización ayuda a identificar patrones que el resumen estadístico por sí solo no revela, como la forma general de la distribución (simétrica, sesgada, bimodal) y la presencia de posibles anomalías en los datos.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="análisis-de-la-variable-median_house_value.html#cb30-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb30-2"><a href="análisis-de-la-variable-median_house_value.html#cb30-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>median_house_value))<span class="sc">+</span></span>
-<span id="cb30-3"><a href="análisis-de-la-variable-median_house_value.html#cb30-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span><span class="fu">after_stat</span>(density)),</span>
-<span id="cb30-4"><a href="análisis-de-la-variable-median_house_value.html#cb30-4" tabindex="-1"></a>                 <span class="at">binwidth=</span><span class="dv">25000</span>,</span>
-<span id="cb30-5"><a href="análisis-de-la-variable-median_house_value.html#cb30-5" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">&quot;#54878f&quot;</span>,</span>
-<span id="cb30-6"><a href="análisis-de-la-variable-median_house_value.html#cb30-6" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">&quot;white&quot;</span>,</span>
-<span id="cb30-7"><a href="análisis-de-la-variable-median_house_value.html#cb30-7" tabindex="-1"></a>                 <span class="at">alpha=</span><span class="fl">0.6</span>)<span class="sc">+</span></span>
-<span id="cb30-8"><a href="análisis-de-la-variable-median_house_value.html#cb30-8" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color=</span><span class="st">&quot;darkblue&quot;</span>, <span class="at">linewidth=</span><span class="fl">1.2</span>)<span class="sc">+</span></span>
-<span id="cb30-9"><a href="análisis-de-la-variable-median_house_value.html#cb30-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&#39;Distribucion del valor medio de las viviendas&#39;</span>,</span>
-<span id="cb30-10"><a href="análisis-de-la-variable-median_house_value.html#cb30-10" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&#39;valor medio de la casa(USD)&#39;</span>,</span>
-<span id="cb30-11"><a href="análisis-de-la-variable-median_house_value.html#cb30-11" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&#39;densidad&#39;</span>)<span class="sc">+</span></span>
-<span id="cb30-12"><a href="análisis-de-la-variable-median_house_value.html#cb30-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/histograma%20de%20median_house_value-1.png" width="672" /></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="análisis-de-la-variable-median_house_value.html#cb29-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="análisis-de-la-variable-median_house_value.html#cb29-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>median_house_value))<span class="sc">+</span></span>
+<span id="cb29-3"><a href="análisis-de-la-variable-median_house_value.html#cb29-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span><span class="fu">after_stat</span>(density)),</span>
+<span id="cb29-4"><a href="análisis-de-la-variable-median_house_value.html#cb29-4" tabindex="-1"></a>                 <span class="at">binwidth=</span><span class="dv">25000</span>,</span>
+<span id="cb29-5"><a href="análisis-de-la-variable-median_house_value.html#cb29-5" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">&quot;#54878f&quot;</span>,</span>
+<span id="cb29-6"><a href="análisis-de-la-variable-median_house_value.html#cb29-6" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">&quot;white&quot;</span>,</span>
+<span id="cb29-7"><a href="análisis-de-la-variable-median_house_value.html#cb29-7" tabindex="-1"></a>                 <span class="at">alpha=</span><span class="fl">0.6</span>)<span class="sc">+</span></span>
+<span id="cb29-8"><a href="análisis-de-la-variable-median_house_value.html#cb29-8" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color=</span><span class="st">&quot;darkblue&quot;</span>, <span class="at">linewidth=</span><span class="fl">1.2</span>)<span class="sc">+</span></span>
+<span id="cb29-9"><a href="análisis-de-la-variable-median_house_value.html#cb29-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&#39;Distribucion del valor medio de las viviendas&#39;</span>,</span>
+<span id="cb29-10"><a href="análisis-de-la-variable-median_house_value.html#cb29-10" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&#39;valor medio de la casa(USD)&#39;</span>,</span>
+<span id="cb29-11"><a href="análisis-de-la-variable-median_house_value.html#cb29-11" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&#39;densidad&#39;</span>)<span class="sc">+</span></span>
+<span id="cb29-12"><a href="análisis-de-la-variable-median_house_value.html#cb29-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="index_files/figure-html/histograma%20de%20median_house_value-1.png" width="672" /></p>
 <p>El histograma muestra una distribución con asimetría positiva, por lo que la mayoría de los bloques censales se concentran en valores bajos y medios, al tiempo que un grupo menor se extiende en una cola larga hacia la derecha, patrón que también se refleja en que la media (206.855,8) sea superior a la mediana (179.700), dado que los valores extremos altos desplazan el promedio sin afectar a la mediana. Asimismo, se observa una barra inusualmente alta en $500.000, correspondiente a 965 bloques censales (4.7% del total), que rompe el decrecimiento gradual esperado en la cola de la distribución.</p>
 <p>Como complemento al histograma, se construye un diagrama de caja y bigotes, con el que se visualizará de forma más precisa la mediana, los cuartiles y, en especial, la cantidad y ubicación de los valores atípicos de la variable.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="análisis-de-la-variable-median_house_value.html#cb31-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb31-2"><a href="análisis-de-la-variable-median_house_value.html#cb31-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y=</span>median_house_value))<span class="sc">+</span></span>
-<span id="cb31-3"><a href="análisis-de-la-variable-median_house_value.html#cb31-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">&quot;#54878f&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">outlier.color=</span><span class="st">&quot;darkred&quot;</span>)<span class="sc">+</span></span>
-<span id="cb31-4"><a href="análisis-de-la-variable-median_house_value.html#cb31-4" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun=</span>mean, <span class="at">geom=</span><span class="st">&#39;point&#39;</span>, <span class="at">shape=</span><span class="dv">20</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">color=</span><span class="st">&quot;darkgreen&quot;</span>)<span class="sc">+</span></span>
-<span id="cb31-5"><a href="análisis-de-la-variable-median_house_value.html#cb31-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/caja%20de%20bigotes%20de%20median_house_value-1.png" width="672" /></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="análisis-de-la-variable-median_house_value.html#cb30-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="análisis-de-la-variable-median_house_value.html#cb30-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y=</span>median_house_value))<span class="sc">+</span></span>
+<span id="cb30-3"><a href="análisis-de-la-variable-median_house_value.html#cb30-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">&quot;#54878f&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">outlier.color=</span><span class="st">&quot;darkred&quot;</span>)<span class="sc">+</span></span>
+<span id="cb30-4"><a href="análisis-de-la-variable-median_house_value.html#cb30-4" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun=</span>mean, <span class="at">geom=</span><span class="st">&#39;point&#39;</span>, <span class="at">shape=</span><span class="dv">20</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">color=</span><span class="st">&quot;darkgreen&quot;</span>)<span class="sc">+</span></span>
+<span id="cb30-5"><a href="análisis-de-la-variable-median_house_value.html#cb30-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="index_files/figure-html/caja%20de%20bigotes%20de%20median_house_value-1.png" width="672" /></p>
 <p>El boxplot representa la asimetría descrita en los párrafos anteriores. La mediana no está centrada dentro de la caja, ya que la distancia entre Q1 y la mediana (60.100) es menor que la distancia entre la mediana y Q3 (85.025), lo que indica que el 25% superior de los datos ocupa un rango de valores más amplio que el 25% inferior.</p>
 <p>Esto se refuerza con el bigote superior, notablemente más largo que el inferior (≈217.688 frente a ≈104.601), pues mientras el límite inferior teórico (Q1 - 1.5×RIC) resulta negativo y por tanto no genera atípicos, el límite superior (Q3 + 1.5×RIC ≈ 482.413) sí es superado por un subconjunto de datos. En consecuencia, se identifican 1.071 valores atípicos (5.2% del total), todos ubicados por encima del límite superior, lo que confirma que la dispersión de la variable no está distribuida de forma pareja, concentrada en los bloques censales de mayor valor.</p>
 
@@ -310,7 +303,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": ["bookdown-demo.epub"],
+  "download": ["index.epub"],
   "search": {
     "engine": "fuse",
     "options": null

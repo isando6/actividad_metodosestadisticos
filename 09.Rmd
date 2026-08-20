@@ -1,0 +1,11 @@
+# Referencias
+
+Emerson, J. W., Green, W. A., Schloerke, B., Crowley, J., Cook, D., Hofmann, H., & Wickham, H. (2013). The generalized pairs plot. Journal of Computational and Graphical Statistics, 22(1), 79–91. https://doi.org/10.1080/10618600.2012.694762
+
+Géron, A. (2022). Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow: Concepts, tools, and techniques to build intelligent systems (3.ª ed.). O'Reilly Media.
+
+Pace, R. K., & Barry, R. (1997). Sparse spatial autoregressions. Statistics & Probability Letters, 33(3), 291–297. https://doi.org/10.1016/S0167-7152(96)00140-X
+
+Sinnott, R. W. (1984). Virtues of the haversine. Sky and Telescope, 68(2), 158–159. 
+
+U.S. Census Bureau. (s.f.). Glossary: Block group (BG). Recuperado el 15 de agosto de 2026, de https://www.census.gov/programs-surveys/geography/about/glossary.html

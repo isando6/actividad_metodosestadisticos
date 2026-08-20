@@ -1,0 +1,117 @@
+# Ingeniería de características
+
+A partir de los hallazgos observados en la matriz de correlación, se justifica la necesidad de aplicar ingeniería de características.
+
+La alta correlación observada en el grupo de variables de volumen genera un problema de redundancia (multicolinealidad) que es posible solucionar a partir de la transformación de estas variables en proporciones con mayor poder explicativo, como la cantidad de habitaciones por hogar (`rooms_per_household`), la proporción de dormitorios respecto al total de cuartos (`bedrooms_per_room`) y la densidad de habitantes por vivienda (`population_per_household`).
+
+En cuanto a la variable `median_income`, al tratarse de una dimensión independiente, se evaluará el uso de transformaciones numéricas para reducir el sesgo en su distribución sin perder su varianza original. 
+
+Respecto a la antigüedad de las viviendas (`housing_median_age`), se considerará su agrupación en categorías por etapas de construcción para capturar posibles efectos no lineales.
+
+Por último, para evitar los problemas que implican el uso de coordenadas aisladas, la información de `latitude` y `longitude` se reestructurará mediante el cálculo de distancias hacia centros económicos clave.
+
+## Variables de proporción
+
+```{r variables de proporción}
+df %>%
+  mutate(
+    rooms_per_household = total_rooms / households,
+    bedrooms_per_room = total_bedrooms / total_rooms,
+    population_per_household = population / households
+  ) -> df
+
+df %>% 
+  select(rooms_per_household, bedrooms_per_room, population_per_household) %>%
+  summary()
+```
+
+Para resolver esta redundancia, se transformaron las cuatro variables en tres razones que describen la vivienda típica dentro del bloque, independientemente de cuántas viviendas estén agrupadas en él:
+
+- `rooms_per_household` (habitaciones por hogar): indica si las casas del bloque tienden a ser espaciosas o reducidas.
+
+- `bedrooms_per_room` (proporción de dormitorios sobre el total de habitaciones): refleja la distribución interna del espacio de la vivienda.
+
+- `population_per_household` (habitantes por hogar): indica si las familias del bloque son numerosas o pequeñas.
+
+Al eliminar el efecto del "tamaño del bloque", estas variables capturan información más directamente relacionada con el valor de una vivienda individual, y evitan que cualquier análisis posterior confunda "bloques con muchas casas agrupadas" con "viviendas de mayor calidad o tamaño".
+
+Sin embargo, al tratarse de variables construidas mediante una división, son sensibles a bloques censales con un número de hogares o habitaciones muy bajo o con inconsistencias en el registro. Esto genera valores extremos poco representativos, evidencia observada en el máximo de 1.243 habitantes por hogar, el máximo de 141.91 habitaciones por hogar o el máximo de 3.49 en la proporción de dormitorios por habitación (un valor atípico e inconsistente, pues la proporción no debería superar 1.0).
+
+```{r n_bloques_households_bajas}
+df %>%
+  filter(households <= 2) %>%
+  count(name = "n_bloques_households_bajos")
+```
+
+
+### Transformación de `median_income`
+
+```{r lmi}
+df %>%
+  mutate(
+    log_median_income = log(median_income)
+  ) -> df
+
+c(
+  asimetria_original = skewness(df$median_income),
+  asimetria_transformada = skewness(df$log_median_income)
+)
+```
+
+La variable `median_income` presentaba una asimetría positiva marcada (coeficiente de 1.65 aproximadamente), reflejo de que la mayoría de los bloques tienen ingresos moderados y unos pocos concentran ingresos muy altos. Se aplicó una transformación logarítmica (`log_median_income`) para reducir esta asimetría y comprimir la escala de los valores extremos, conservando en el proceso la varianza original de la variable y el orden relativo entre los bloques.
+
+El coeficiente de asimetría resultante (-0.15), que se encuentra cercano a cero, confirma que la transformación fue efectiva para aproximar la distribución a una forma más simétrica.
+
+### Categorización de `housing_median_age`
+
+```{r hma}
+df %>%
+  mutate(
+    age_category = cut(
+      housing_median_age,
+      breaks = c(0, 18, 29, 37, 52),
+      labels = c("Nueva (0-18)", "Reciente (19-29)", "Madura (30-37)", "Antigua (38-52)"),
+      include.lowest = TRUE
+    )
+  ) -> df
+
+df %>%
+  count(age_category, name = "n") %>%
+  mutate(Porcentaje = round(n / sum(n) * 100, 2))
+```
+
+En el análisis bivariado se observó que `housing_median_age` no presenta una tendencia lineal clara con `median_house_value`. Para cada nivel de antigüedad hay viviendas tanto baratas como caras, lo que indica que una correlación simple no captura bien esta relación. Esto significa que su efecto sobre el precio probablemente no es constante; es decir, no es que "cada año adicional reste una cantidad fija de valor". Lo que da a entender es que pueden haber umbrales o etapas donde el comportamiento cambia (por ejemplo, viviendas muy nuevas con precios altos por ser construcciones modernas, y viviendas muy antiguas con precios altos por estar en zonas históricas o consolidadas, mientras que las de edad intermedia se comportan de otra forma).
+
+Para poder detectar este tipo de patrón, se transformó `housing_median_age` de una variable numérica continua a una variable categórica (`age_category`) con cuatro grupos: 
+
+- Nueva (0-18 años)
+
+- Reciente (19-29 años)
+
+- Madura (30-37 años) 
+
+- Antigua (38-52 años)
+
+Los puntos de corte corresponden a los cuartiles reales de la distribución de la variable (Q1=18, mediana=29, Q3=37), calculados previamente en el análisis univariado. Esto tiene dos ventajas: primero, cada categoría queda con una cantidad similar de observaciones (~25% del total), evitando grupos desbalanceados que serían poco representativos; segundo, los cortes reflejan la estructura real de los datos en lugar de umbrales redondos escogidos sin justificación estadística.
+
+
+### Distancia a centros económicos
+
+```{r dce}
+df %>%
+  mutate(
+    dist_LA = sqrt((latitude - 34.05)^2 + (longitude - (-118.24))^2),
+    dist_SF = sqrt((latitude - 37.77)^2 + (longitude - (-122.42))^2),
+    dist_min_centro = pmin(dist_LA, dist_SF)
+  ) -> df
+
+df %>%
+  select(dist_LA, dist_SF, dist_min_centro) %>%
+  summary()
+```
+
+El análisis bivariado mostró que `longitude` y `latitude` no tienen una relación lineal con `median_house_value`; lo que sí sucede es que forman agrupaciones o "zonas" de mayor valor alrededor de las coordenadas correspondientes al área de Los Ángeles y la Bahía de San Francisco. Usar las coordenadas crudas como predictoras no permitiría capturar bien este patrón, ya que dos bloques pueden tener coordenadas numéricamente distantes de estos centros pero geográficamente lejanas por razones completamente distintas.
+
+Para representar mejor esta información, se calculó la distancia euclidiana de cada bloque censal hacia dos centros económicos clave del estado (Los Ángeles y San Francisco) y se construyó la variable `dist_min_centro` en representación de la distancia al centro más cercano de los dos. Esta variable resume en un solo valor numérico qué tan alejado está un bloque de las zonas de mayor actividad económica, lo cual se espera que tenga una relación más directa e interpretable con el valor de la vivienda que las coordenadas de longitud y latitud por separado.
+
+Es importante señalar que esta distancia se calculó como distancia euclidiana directamente sobre los grados de latitud y longitud, una aproximación razonable para un fin exploratorio que no equivale a la distancia real en kilómetros (y es que un grado de longitud representa una distancia física distinta según la latitud que se mida, por lo que un cálculo más preciso requeriría aplicar una fórmula que tenga en cuenta la curvatura terrestre, como la fórmula de Haversine (Sinnott, 1984)).
