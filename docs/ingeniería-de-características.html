@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Ingeniería de características | Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Ingeniería de características | Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Ingeniería de características | Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Karina Núñez Sarmiento, Isabella Sandoval Escorcia" />
+
+
+<meta name="date" content="2026-08-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="correlación-entre-variables-independientes.html"/>
+<link rel="next" href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Trabajo de métodos estadísticos</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introducción.html"><a href="introducción.html#contexto-del-problema"><i class="fa fa-check"></i><b>1.1</b> Contexto del problema</a></li>
+<li class="chapter" data-level="1.2" data-path="introducción.html"><a href="introducción.html#variables-del-conjunto-de-datos"><i class="fa fa-check"></i><b>1.2</b> Variables del conjunto de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Extracción, transformación y carga de datos (ETL)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#instalaci%C3%B3n-de-librer%C3%ADas"><i class="fa fa-check"></i><b>2.1</b> Instalación de librerías</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#carga-del-conjunto-de-datos-housing.csv"><i class="fa fa-check"></i><b>2.2</b> Carga del conjunto de datos <code>housing.csv</code></a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#visualizaci%C3%B3n-del-conjunto-de-datos-y-su-estructura"><i class="fa fa-check"></i><b>2.3</b> Visualización del conjunto de datos y su estructura</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#identificaci%C3%B3n-de-valores-faltantes-na"><i class="fa fa-check"></i><b>2.4</b> Identificación de valores faltantes (NA)</a></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#imputaci%C3%B3n-de-datos-faltantes"><i class="fa fa-check"></i><b>2.5</b> Imputación de datos faltantes</a></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#conversi%C3%B3n-de-variable-tipo-texto-a-factor"><i class="fa fa-check"></i><b>2.6</b> Conversión de variable tipo texto a factor</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="análisis-de-la-variable-median_house_value.html"><a href="análisis-de-la-variable-median_house_value.html"><i class="fa fa-check"></i><b>3</b> Análisis de la variable <code>median_house_value</code></a></li>
+<li class="chapter" data-level="4" data-path="análisis-de-las-variables-características-independientes.html"><a href="análisis-de-las-variables-características-independientes.html"><i class="fa fa-check"></i><b>4</b> Análisis de las variables características (independientes)</a></li>
+<li class="chapter" data-level="5" data-path="análisis-exploratorio-bivariado.html"><a href="análisis-exploratorio-bivariado.html"><i class="fa fa-check"></i><b>5</b> Análisis exploratorio bivariado</a></li>
+<li class="chapter" data-level="6" data-path="correlación-entre-variables-independientes.html"><a href="correlación-entre-variables-independientes.html"><i class="fa fa-check"></i><b>6</b> Correlación entre variables independientes</a></li>
+<li class="chapter" data-level="7" data-path="ingeniería-de-características.html"><a href="ingeniería-de-características.html"><i class="fa fa-check"></i><b>7</b> Ingeniería de características</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="ingeniería-de-características.html"><a href="ingeniería-de-características.html#variables-de-proporci%C3%B3n"><i class="fa fa-check"></i><b>7.1</b> Variables de proporción</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="ingeniería-de-características.html"><a href="ingeniería-de-características.html#transformaci%C3%B3n-de-median_income"><i class="fa fa-check"></i><b>7.1.1</b> Transformación de <code>median_income</code></a></li>
+<li class="chapter" data-level="7.1.2" data-path="ingeniería-de-características.html"><a href="ingeniería-de-características.html#categorizaci%C3%B3n-de-housing_median_age"><i class="fa fa-check"></i><b>7.1.2</b> Categorización de <code>housing_median_age</code></a></li>
+<li class="chapter" data-level="7.1.3" data-path="ingeniería-de-características.html"><a href="ingeniería-de-características.html#distancia-a-centros-econ%C3%B3micos"><i class="fa fa-check"></i><b>7.1.3</b> Distancia a centros económicos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><a href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><i class="fa fa-check"></i><b>8</b> Análisis exploratorio bivariado de las variables generadas por ingeniería de características</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><a href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html#variables-de-proporci%C3%B3n-1"><i class="fa fa-check"></i><b>8.1</b> Variables de proporción</a></li>
+<li class="chapter" data-level="8.2" data-path="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><a href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html#transformaci%C3%B3n-de-median_income-1"><i class="fa fa-check"></i><b>8.2</b> Transformación de <code>median_income</code></a></li>
+<li class="chapter" data-level="8.3" data-path="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><a href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html#categorizaci%C3%B3n-de-housing_median_age-1"><i class="fa fa-check"></i><b>8.3</b> Categorización de <code>housing_median_age</code></a></li>
+<li class="chapter" data-level="8.4" data-path="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html"><a href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html#distancia-a-centros-econ%C3%B3micos-1"><i class="fa fa-check"></i><b>8.4</b> Distancia a centros económicos</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html"><i class="fa fa-check"></i><b>9</b> Comparación de presión sistólica vs. diastólica</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#librer%C3%ADas"><i class="fa fa-check"></i><b>9.1</b> Librerías</a></li>
+<li class="chapter" data-level="9.2" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#carga-de-datos"><i class="fa fa-check"></i><b>9.2</b> Carga de datos</a></li>
+<li class="chapter" data-level="9.3" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#transformaci%C3%B3n-de-los-datos"><i class="fa fa-check"></i><b>9.3</b> Transformación de los datos</a></li>
+<li class="chapter" data-level="9.4" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#verificaci%C3%B3n-de-datos-faltantes"><i class="fa fa-check"></i><b>9.4</b> Verificación de datos faltantes</a></li>
+<li class="chapter" data-level="9.5" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#resumen-exploratorio"><i class="fa fa-check"></i><b>9.5</b> Resumen exploratorio</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#histograma-comparativo"><i class="fa fa-check"></i><b>9.5.1</b> Histograma comparativo</a></li>
+<li class="chapter" data-level="9.5.2" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#boxplot-comparativo"><i class="fa fa-check"></i><b>9.5.2</b> Boxplot comparativo</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#supuesto-de-normalidad"><i class="fa fa-check"></i><b>9.6</b> Supuesto de normalidad</a></li>
+<li class="chapter" data-level="9.7" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#supuesto-de-homocedasticidad"><i class="fa fa-check"></i><b>9.7</b> Supuesto de homocedasticidad</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#demostraci%C3%B3n-de-var.test-paso-a-paso"><i class="fa fa-check"></i><b>9.7.1</b> Demostración de var.test paso a paso</a></li>
+</ul></li>
+<li class="chapter" data-level="9.8" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#verificaci%C3%B3n-con-t.test"><i class="fa fa-check"></i><b>9.8</b> Verificación con <code>t.test()</code></a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#verificaci%C3%B3n-de-t.test-manual"><i class="fa fa-check"></i><b>9.8.1</b> Verificación de t.test manual</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="comparación-de-presión-sistólica-vs.-diastólica.html"><a href="comparación-de-presión-sistólica-vs.-diastólica.html#tama%C3%B1o-del-efecto"><i class="fa fa-check"></i><b>9.9</b> Tamaño del efecto</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i><b>10</b> Referencias</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ingeniería-de-características" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> Ingeniería de características<a href="ingeniería-de-características.html#ingenier%C3%ADa-de-caracter%C3%ADsticas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A partir de los hallazgos observados en la matriz de correlación, se justifica la necesidad de aplicar ingeniería de características.</p>
+<p>La alta correlación observada en el grupo de variables de volumen genera un problema de redundancia (multicolinealidad) que es posible solucionar a partir de la transformación de estas variables en proporciones con mayor poder explicativo, como la cantidad de habitaciones por hogar (<code>rooms_per_household</code>), la proporción de dormitorios respecto al total de cuartos (<code>bedrooms_per_room</code>) y la densidad de habitantes por vivienda (<code>population_per_household</code>).</p>
+<p>En cuanto a la variable <code>median_income</code>, al tratarse de una dimensión independiente, se evaluará el uso de transformaciones numéricas para reducir el sesgo en su distribución sin perder su varianza original.</p>
+<p>Respecto a la antigüedad de las viviendas (<code>housing_median_age</code>), se considerará su agrupación en categorías por etapas de construcción para capturar posibles efectos no lineales.</p>
+<p>Por último, para evitar los problemas que implican el uso de coordenadas aisladas, la información de <code>latitude</code> y <code>longitude</code> se reestructurará mediante el cálculo de distancias hacia centros económicos clave.</p>
+<div id="variables-de-proporción" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Variables de proporción<a href="ingeniería-de-características.html#variables-de-proporci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="ingeniería-de-características.html#cb67-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb67-2"><a href="ingeniería-de-características.html#cb67-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb67-3"><a href="ingeniería-de-características.html#cb67-3" tabindex="-1"></a>    <span class="at">rooms_per_household =</span> total_rooms <span class="sc">/</span> households,</span>
+<span id="cb67-4"><a href="ingeniería-de-características.html#cb67-4" tabindex="-1"></a>    <span class="at">bedrooms_per_room =</span> total_bedrooms <span class="sc">/</span> total_rooms,</span>
+<span id="cb67-5"><a href="ingeniería-de-características.html#cb67-5" tabindex="-1"></a>    <span class="at">population_per_household =</span> population <span class="sc">/</span> households</span>
+<span id="cb67-6"><a href="ingeniería-de-características.html#cb67-6" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> df</span>
+<span id="cb67-7"><a href="ingeniería-de-características.html#cb67-7" tabindex="-1"></a></span>
+<span id="cb67-8"><a href="ingeniería-de-características.html#cb67-8" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb67-9"><a href="ingeniería-de-características.html#cb67-9" tabindex="-1"></a>  <span class="fu">select</span>(rooms_per_household, bedrooms_per_room, population_per_household) <span class="sc">%&gt;%</span></span>
+<span id="cb67-10"><a href="ingeniería-de-características.html#cb67-10" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<pre><code>##  rooms_per_household bedrooms_per_room population_per_household
+##  Min.   :  0.8462    Min.   :0.04594   Min.   :   0.6923       
+##  1st Qu.:  4.4407    1st Qu.:0.17536   1st Qu.:   2.4297       
+##  Median :  5.2291    Median :0.20331   Median :   2.8181       
+##  Mean   :  5.4290    Mean   :0.21448   Mean   :   3.0707       
+##  3rd Qu.:  6.0524    3rd Qu.:0.24026   3rd Qu.:   3.2823       
+##  Max.   :141.9091    Max.   :3.49267   Max.   :1243.3333</code></pre>
+<p>Para resolver esta redundancia, se transformaron las cuatro variables en tres razones que describen la vivienda típica dentro del bloque, independientemente de cuántas viviendas estén agrupadas en él:</p>
+<ul>
+<li><p><code>rooms_per_household</code> (habitaciones por hogar): indica si las casas del bloque tienden a ser espaciosas o reducidas.</p></li>
+<li><p><code>bedrooms_per_room</code> (proporción de dormitorios sobre el total de habitaciones): refleja la distribución interna del espacio de la vivienda.</p></li>
+<li><p><code>population_per_household</code> (habitantes por hogar): indica si las familias del bloque son numerosas o pequeñas.</p></li>
+</ul>
+<p>Al eliminar el efecto del “tamaño del bloque”, estas variables capturan información más directamente relacionada con el valor de una vivienda individual, y evitan que cualquier análisis posterior confunda “bloques con muchas casas agrupadas” con “viviendas de mayor calidad o tamaño”.</p>
+<p>Sin embargo, al tratarse de variables construidas mediante una división, son sensibles a bloques censales con un número de hogares o habitaciones muy bajo o con inconsistencias en el registro. Esto genera valores extremos poco representativos, evidencia observada en el máximo de 1.243 habitantes por hogar, el máximo de 141.91 habitaciones por hogar o el máximo de 3.49 en la proporción de dormitorios por habitación (un valor atípico e inconsistente, pues la proporción no debería superar 1.0).</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="ingeniería-de-características.html#cb69-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb69-2"><a href="ingeniería-de-características.html#cb69-2" tabindex="-1"></a>  <span class="fu">filter</span>(households <span class="sc">&lt;=</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb69-3"><a href="ingeniería-de-características.html#cb69-3" tabindex="-1"></a>  <span class="fu">count</span>(<span class="at">name =</span> <span class="st">&quot;n_bloques_households_bajos&quot;</span>)</span></code></pre></div>
+<pre><code>##   n_bloques_households_bajos
+## 1                          4</code></pre>
+<div id="transformación-de-median_income" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Transformación de <code>median_income</code><a href="ingeniería-de-características.html#transformaci%C3%B3n-de-median_income" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="ingeniería-de-características.html#cb71-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb71-2"><a href="ingeniería-de-características.html#cb71-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb71-3"><a href="ingeniería-de-características.html#cb71-3" tabindex="-1"></a>    <span class="at">log_median_income =</span> <span class="fu">log</span>(median_income)</span>
+<span id="cb71-4"><a href="ingeniería-de-características.html#cb71-4" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> df</span>
+<span id="cb71-5"><a href="ingeniería-de-características.html#cb71-5" tabindex="-1"></a></span>
+<span id="cb71-6"><a href="ingeniería-de-características.html#cb71-6" tabindex="-1"></a><span class="fu">c</span>(</span>
+<span id="cb71-7"><a href="ingeniería-de-características.html#cb71-7" tabindex="-1"></a>  <span class="at">asimetria_original =</span> <span class="fu">skewness</span>(df<span class="sc">$</span>median_income),</span>
+<span id="cb71-8"><a href="ingeniería-de-características.html#cb71-8" tabindex="-1"></a>  <span class="at">asimetria_transformada =</span> <span class="fu">skewness</span>(df<span class="sc">$</span>log_median_income)</span>
+<span id="cb71-9"><a href="ingeniería-de-características.html#cb71-9" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>##     asimetria_original asimetria_transformada 
+##              1.6465370             -0.1460712</code></pre>
+<p>La variable <code>median_income</code> presentaba una asimetría positiva marcada (coeficiente de 1.65 aproximadamente), reflejo de que la mayoría de los bloques tienen ingresos moderados y unos pocos concentran ingresos muy altos. Se aplicó una transformación logarítmica (<code>log_median_income</code>) para reducir esta asimetría y comprimir la escala de los valores extremos, conservando en el proceso la varianza original de la variable y el orden relativo entre los bloques.</p>
+<p>El coeficiente de asimetría resultante (-0.15), que se encuentra cercano a cero, confirma que la transformación fue efectiva para aproximar la distribución a una forma más simétrica.</p>
+</div>
+<div id="categorización-de-housing_median_age" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Categorización de <code>housing_median_age</code><a href="ingeniería-de-características.html#categorizaci%C3%B3n-de-housing_median_age" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="ingeniería-de-características.html#cb73-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb73-2"><a href="ingeniería-de-características.html#cb73-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb73-3"><a href="ingeniería-de-características.html#cb73-3" tabindex="-1"></a>    <span class="at">age_category =</span> <span class="fu">cut</span>(</span>
+<span id="cb73-4"><a href="ingeniería-de-características.html#cb73-4" tabindex="-1"></a>      housing_median_age,</span>
+<span id="cb73-5"><a href="ingeniería-de-características.html#cb73-5" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">18</span>, <span class="dv">29</span>, <span class="dv">37</span>, <span class="dv">52</span>),</span>
+<span id="cb73-6"><a href="ingeniería-de-características.html#cb73-6" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Nueva (0-18)&quot;</span>, <span class="st">&quot;Reciente (19-29)&quot;</span>, <span class="st">&quot;Madura (30-37)&quot;</span>, <span class="st">&quot;Antigua (38-52)&quot;</span>),</span>
+<span id="cb73-7"><a href="ingeniería-de-características.html#cb73-7" tabindex="-1"></a>      <span class="at">include.lowest =</span> <span class="cn">TRUE</span></span>
+<span id="cb73-8"><a href="ingeniería-de-características.html#cb73-8" tabindex="-1"></a>    )</span>
+<span id="cb73-9"><a href="ingeniería-de-características.html#cb73-9" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> df</span>
+<span id="cb73-10"><a href="ingeniería-de-características.html#cb73-10" tabindex="-1"></a></span>
+<span id="cb73-11"><a href="ingeniería-de-características.html#cb73-11" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb73-12"><a href="ingeniería-de-características.html#cb73-12" tabindex="-1"></a>  <span class="fu">count</span>(age_category, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb73-13"><a href="ingeniería-de-características.html#cb73-13" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>))</span></code></pre></div>
+<pre><code>##       age_category    n Porcentaje
+## 1     Nueva (0-18) 5326      25.80
+## 2 Reciente (19-29) 5343      25.89
+## 3   Madura (30-37) 5026      24.35
+## 4  Antigua (38-52) 4945      23.96</code></pre>
+<p>En el análisis bivariado se observó que <code>housing_median_age</code> no presenta una tendencia lineal clara con <code>median_house_value</code>. Para cada nivel de antigüedad hay viviendas tanto baratas como caras, lo que indica que una correlación simple no captura bien esta relación. Esto significa que su efecto sobre el precio probablemente no es constante; es decir, no es que “cada año adicional reste una cantidad fija de valor”. Lo que da a entender es que pueden haber umbrales o etapas donde el comportamiento cambia (por ejemplo, viviendas muy nuevas con precios altos por ser construcciones modernas, y viviendas muy antiguas con precios altos por estar en zonas históricas o consolidadas, mientras que las de edad intermedia se comportan de otra forma).</p>
+<p>Para poder detectar este tipo de patrón, se transformó <code>housing_median_age</code> de una variable numérica continua a una variable categórica (<code>age_category</code>) con cuatro grupos:</p>
+<ul>
+<li><p>Nueva (0-18 años)</p></li>
+<li><p>Reciente (19-29 años)</p></li>
+<li><p>Madura (30-37 años)</p></li>
+<li><p>Antigua (38-52 años)</p></li>
+</ul>
+<p>Los puntos de corte corresponden a los cuartiles reales de la distribución de la variable (Q1=18, mediana=29, Q3=37), calculados previamente en el análisis univariado. Esto tiene dos ventajas: primero, cada categoría queda con una cantidad similar de observaciones (~25% del total), evitando grupos desbalanceados que serían poco representativos; segundo, los cortes reflejan la estructura real de los datos en lugar de umbrales redondos escogidos sin justificación estadística.</p>
+</div>
+<div id="distancia-a-centros-económicos" class="section level3 hasAnchor" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> Distancia a centros económicos<a href="ingeniería-de-características.html#distancia-a-centros-econ%C3%B3micos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="ingeniería-de-características.html#cb75-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb75-2"><a href="ingeniería-de-características.html#cb75-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb75-3"><a href="ingeniería-de-características.html#cb75-3" tabindex="-1"></a>    <span class="at">dist_LA =</span> <span class="fu">sqrt</span>((latitude <span class="sc">-</span> <span class="fl">34.05</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (longitude <span class="sc">-</span> (<span class="sc">-</span><span class="fl">118.24</span>))<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb75-4"><a href="ingeniería-de-características.html#cb75-4" tabindex="-1"></a>    <span class="at">dist_SF =</span> <span class="fu">sqrt</span>((latitude <span class="sc">-</span> <span class="fl">37.77</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (longitude <span class="sc">-</span> (<span class="sc">-</span><span class="fl">122.42</span>))<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb75-5"><a href="ingeniería-de-características.html#cb75-5" tabindex="-1"></a>    <span class="at">dist_min_centro =</span> <span class="fu">pmin</span>(dist_LA, dist_SF)</span>
+<span id="cb75-6"><a href="ingeniería-de-características.html#cb75-6" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> df</span>
+<span id="cb75-7"><a href="ingeniería-de-características.html#cb75-7" tabindex="-1"></a></span>
+<span id="cb75-8"><a href="ingeniería-de-características.html#cb75-8" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb75-9"><a href="ingeniería-de-características.html#cb75-9" tabindex="-1"></a>  <span class="fu">select</span>(dist_LA, dist_SF, dist_min_centro) <span class="sc">%&gt;%</span></span>
+<span id="cb75-10"><a href="ingeniería-de-características.html#cb75-10" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<pre><code>##     dist_LA          dist_SF      dist_min_centro 
+##  Min.   :0.0000   Min.   :0.000   Min.   :0.0000  
+##  1st Qu.:0.3183   1st Qu.:1.210   1st Qu.:0.2285  
+##  Median :1.6907   Median :5.265   Median :0.5805  
+##  Mean   :2.6460   Mean   :3.878   Mean   :0.9047  
+##  3rd Qu.:5.2070   3rd Qu.:5.842   3rd Qu.:1.4442  
+##  Max.   :9.8695   Max.   :9.308   Max.   :4.6515</code></pre>
+<p>El análisis bivariado mostró que <code>longitude</code> y <code>latitude</code> no tienen una relación lineal con <code>median_house_value</code>; lo que sí sucede es que forman agrupaciones o “zonas” de mayor valor alrededor de las coordenadas correspondientes al área de Los Ángeles y la Bahía de San Francisco. Usar las coordenadas crudas como predictoras no permitiría capturar bien este patrón, ya que dos bloques pueden tener coordenadas numéricamente distantes de estos centros pero geográficamente lejanas por razones completamente distintas.</p>
+<p>Para representar mejor esta información, se calculó la distancia euclidiana de cada bloque censal hacia dos centros económicos clave del estado (Los Ángeles y San Francisco) y se construyó la variable <code>dist_min_centro</code> en representación de la distancia al centro más cercano de los dos. Esta variable resume en un solo valor numérico qué tan alejado está un bloque de las zonas de mayor actividad económica, lo cual se espera que tenga una relación más directa e interpretable con el valor de la vivienda que las coordenadas de longitud y latitud por separado.</p>
+<p>Es importante señalar que esta distancia se calculó como distancia euclidiana directamente sobre los grados de latitud y longitud, una aproximación razonable para un fin exploratorio que no equivale a la distancia real en kilómetros (y es que un grado de longitud representa una distancia física distinta según la latitud que se mida, por lo que un cálculo más preciso requeriría aplicar una fórmula que tenga en cuenta la curvatura terrestre, como la fórmula de Haversine (Sinnott, 1984)).</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="correlación-entre-variables-independientes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="análisis-exploratorio-bivariado-de-las-variables-generadas-por-ingeniería-de-características.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/06.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown-demo.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
