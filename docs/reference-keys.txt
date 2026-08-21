@@ -1,3 +1,6 @@
+introducción
+contexto-del-problema
+variables-del-conjunto-de-datos
 intro
 instalación-de-librerías
 carga-del-conjunto-de-datos-housing.csv
