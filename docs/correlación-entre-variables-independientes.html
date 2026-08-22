@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 Correlación entre variables independientes | Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ’California Housing</title>
+  <title>6 Correlación entre variables independientes | Análisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 Correlación entre variables independientes | Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ’California Housing" />
+  <meta property="og:title" content="6 Correlación entre variables independientes | Análisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Correlación entre variables independientes | Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ’California Housing" />
+  <meta name="twitter:title" content="6 Correlación entre variables independientes | Análisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Karina Núñez Sarmiento, Isabella Sandoval Escorcia" />
 
 
-<meta name="date" content="2026-08-20" />
+<meta name="date" content="2026-08-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -209,7 +209,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ’California Housing</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’</a>
           </h1>
         </div>
 
@@ -220,11 +220,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="correlación-entre-variables-independientes" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">6</span> Correlación entre variables independientes<a href="correlación-entre-variables-independientes.html#correlaci%C3%B3n-entre-variables-independientes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Se utilizó un mapa de calor de correlaciones (<code>ggcorr</code>) en lugar de una tabla de coeficientes, ya que permite identificar de un vistazo tanto la fuerza como la dirección de la relación entre las ocho variables numéricas independientes, usando el color como codificación visual (azul intenso = correlación positiva fuerte, rojo intenso = correlación negativa fuerte, blanco = relación prácticamente nula).</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="correlación-entre-variables-independientes.html#cb53-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb53-2"><a href="correlación-entre-variables-independientes.html#cb53-2" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric), <span class="sc">-</span>median_house_value) <span class="sc">%&gt;%</span></span>
-<span id="cb53-3"><a href="correlación-entre-variables-independientes.html#cb53-3" tabindex="-1"></a>  <span class="fu">ggcorr</span>(<span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label_round =</span> <span class="dv">2</span>, <span class="at">hjust =</span> <span class="fl">0.75</span>, <span class="at">size =</span> <span class="dv">3</span>,</span>
-<span id="cb53-4"><a href="correlación-entre-variables-independientes.html#cb53-4" tabindex="-1"></a>         <span class="at">low =</span> <span class="st">&quot;#d62728&quot;</span>, <span class="at">mid =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;#1f77b4&quot;</span>) <span class="sc">+</span></span>
-<span id="cb53-5"><a href="correlación-entre-variables-independientes.html#cb53-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Correlación entre variables independientes&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="correlación-entre-variables-independientes.html#cb66-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb66-2"><a href="correlación-entre-variables-independientes.html#cb66-2" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric), <span class="sc">-</span>median_house_value) <span class="sc">%&gt;%</span></span>
+<span id="cb66-3"><a href="correlación-entre-variables-independientes.html#cb66-3" tabindex="-1"></a>  <span class="fu">ggcorr</span>(<span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label_round =</span> <span class="dv">2</span>, <span class="at">hjust =</span> <span class="fl">0.75</span>, <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb66-4"><a href="correlación-entre-variables-independientes.html#cb66-4" tabindex="-1"></a>         <span class="at">low =</span> <span class="st">&quot;#d62728&quot;</span>, <span class="at">mid =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;#1f77b4&quot;</span>) <span class="sc">+</span></span>
+<span id="cb66-5"><a href="correlación-entre-variables-independientes.html#cb66-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Correlación entre variables independientes&quot;</span>)</span></code></pre></div>
 <p><img src="tareademetodos_files/figure-html/heatmap-1.png" width="672" /></p>
 <p>El análisis de la matriz de correlación permite identificar cuatro patrones principales en las relaciones entre las variables del conjunto de datos.</p>
 <p>El hallazgo más claro es la presencia de un bloque con correlaciones sumamente altas entre <code>total_rooms</code>, <code>total_bedrooms</code>, <code>population</code> y <code>households</code>, cuyos coeficientes oscilan entre 0.86 y 0.97. Este comportamiento es esperable, ya que las cuatro variables miden, desde distintas perspectivas, el volumen general del bloque censal; un área con mayor número de viviendas alberga de forma natural a más habitantes y requiere una mayor cantidad de habitaciones y dormitorios. Por el contrario, la variable <code>median_income</code> no muestra una relación lineal relevante con este grupo de variables de volumen, registrando correlaciones de entre -0.01 y 0.20, lo que indica que el nivel de ingreso mediano de los hogares opera como una dimensión socioeconómica autónoma independiente en su totalidad del tamaño o la densidad del bloque.</p>

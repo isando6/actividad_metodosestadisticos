@@ -1,5 +1,5 @@
 --- 
-title: "Análisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos 'California Housing"
+title: "Análisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos 'California Housing' "
 author: "Karina Núñez Sarmiento, Isabella Sandoval Escorcia"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site

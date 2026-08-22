@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Análisis de la variable median_house_value | Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ’California Housing</title>
+  <title>3 Análisis de la variable median_house_value | Análisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Análisis de la variable median_house_value | Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ’California Housing" />
+  <meta property="og:title" content="3 Análisis de la variable median_house_value | Análisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Análisis de la variable median_house_value | Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ’California Housing" />
+  <meta name="twitter:title" content="3 Análisis de la variable median_house_value | Análisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Karina Núñez Sarmiento, Isabella Sandoval Escorcia" />
 
 
-<meta name="date" content="2026-08-20" />
+<meta name="date" content="2026-08-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -209,7 +209,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ’California Housing</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’</a>
           </h1>
         </div>
 
@@ -221,42 +221,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">3</span> Análisis de la variable <code>median_house_value</code><a href="análisis-de-la-variable-median_house_value.html#an%C3%A1lisis-de-la-variable-median_house_value" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Antes de explorar las posibles relaciones entre las variables predictoras y el valor de las viviendas, es fundamental comprender el comportamiento de la variable objetivo (target) por sí sola. Conocer su tendencia central, dispersión y forma de distribución facilita la anticipación de posibles dificultades para el análisis posterior (como la presencia de asimetría, valores atípicos o truncamientos en los datos) y sienta las bases para interpretar correctamente los resultados de las secciones siguientes.</p>
 <p>Se calcula un resumen estadístico completo de <code>median_house_value</code>, incluyendo medidas de tendencia central (media, mediana), de dispersión (desviación estándar, rango intercuartílico) y de forma de la distribución (asimetría, curtosis), <strong>con el fin de caracterizar numéricamente el comportamiento de la variable antes de analizarla visualmente.</strong></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="análisis-de-la-variable-median_house_value.html#cb15-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="análisis-de-la-variable-median_house_value.html#cb15-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">length</span>(median_house_value),</span>
-<span id="cb15-3"><a href="análisis-de-la-variable-median_house_value.html#cb15-3" tabindex="-1"></a>                 <span class="at">media=</span><span class="fu">mean</span>(median_house_value),</span>
-<span id="cb15-4"><a href="análisis-de-la-variable-median_house_value.html#cb15-4" tabindex="-1"></a>                 <span class="at">sd=</span><span class="fu">sd</span>(median_house_value),</span>
-<span id="cb15-5"><a href="análisis-de-la-variable-median_house_value.html#cb15-5" tabindex="-1"></a>                 <span class="at">mediana=</span><span class="fu">median</span>(median_house_value),</span>
-<span id="cb15-6"><a href="análisis-de-la-variable-median_house_value.html#cb15-6" tabindex="-1"></a>                 <span class="at">RIC=</span><span class="fu">IQR</span>(median_house_value),</span>
-<span id="cb15-7"><a href="análisis-de-la-variable-median_house_value.html#cb15-7" tabindex="-1"></a>                 <span class="at">Q1=</span><span class="fu">quantile</span>(median_house_value,<span class="fl">0.25</span>),</span>
-<span id="cb15-8"><a href="análisis-de-la-variable-median_house_value.html#cb15-8" tabindex="-1"></a>                 <span class="at">Q3=</span><span class="fu">quantile</span>(median_house_value,<span class="fl">0.75</span>),</span>
-<span id="cb15-9"><a href="análisis-de-la-variable-median_house_value.html#cb15-9" tabindex="-1"></a>                 <span class="at">minimo=</span><span class="fu">min</span>(median_house_value),</span>
-<span id="cb15-10"><a href="análisis-de-la-variable-median_house_value.html#cb15-10" tabindex="-1"></a>                 <span class="at">maximo=</span><span class="fu">max</span>(median_house_value),</span>
-<span id="cb15-11"><a href="análisis-de-la-variable-median_house_value.html#cb15-11" tabindex="-1"></a>                 <span class="at">asimetria=</span><span class="fu">skewness</span>(median_house_value),</span>
-<span id="cb15-12"><a href="análisis-de-la-variable-median_house_value.html#cb15-12" tabindex="-1"></a>                 <span class="at">curtosis=</span><span class="fu">kurtosis</span>(median_house_value))</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="análisis-de-la-variable-median_house_value.html#cb28-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a href="análisis-de-la-variable-median_house_value.html#cb28-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">length</span>(median_house_value),</span>
+<span id="cb28-3"><a href="análisis-de-la-variable-median_house_value.html#cb28-3" tabindex="-1"></a>                 <span class="at">media=</span><span class="fu">mean</span>(median_house_value),</span>
+<span id="cb28-4"><a href="análisis-de-la-variable-median_house_value.html#cb28-4" tabindex="-1"></a>                 <span class="at">sd=</span><span class="fu">sd</span>(median_house_value),</span>
+<span id="cb28-5"><a href="análisis-de-la-variable-median_house_value.html#cb28-5" tabindex="-1"></a>                 <span class="at">mediana=</span><span class="fu">median</span>(median_house_value),</span>
+<span id="cb28-6"><a href="análisis-de-la-variable-median_house_value.html#cb28-6" tabindex="-1"></a>                 <span class="at">RIC=</span><span class="fu">IQR</span>(median_house_value),</span>
+<span id="cb28-7"><a href="análisis-de-la-variable-median_house_value.html#cb28-7" tabindex="-1"></a>                 <span class="at">Q1=</span><span class="fu">quantile</span>(median_house_value,<span class="fl">0.25</span>),</span>
+<span id="cb28-8"><a href="análisis-de-la-variable-median_house_value.html#cb28-8" tabindex="-1"></a>                 <span class="at">Q3=</span><span class="fu">quantile</span>(median_house_value,<span class="fl">0.75</span>),</span>
+<span id="cb28-9"><a href="análisis-de-la-variable-median_house_value.html#cb28-9" tabindex="-1"></a>                 <span class="at">minimo=</span><span class="fu">min</span>(median_house_value),</span>
+<span id="cb28-10"><a href="análisis-de-la-variable-median_house_value.html#cb28-10" tabindex="-1"></a>                 <span class="at">maximo=</span><span class="fu">max</span>(median_house_value),</span>
+<span id="cb28-11"><a href="análisis-de-la-variable-median_house_value.html#cb28-11" tabindex="-1"></a>                 <span class="at">asimetria=</span><span class="fu">skewness</span>(median_house_value),</span>
+<span id="cb28-12"><a href="análisis-de-la-variable-median_house_value.html#cb28-12" tabindex="-1"></a>                 <span class="at">curtosis=</span><span class="fu">kurtosis</span>(median_house_value))</span></code></pre></div>
 <pre><code>##       n    media       sd mediana    RIC     Q1     Q3 minimo maximo asimetria curtosis
 ## 1 20640 206855.8 115395.6  179700 145125 119600 264725  14999 500001 0.9776922   3.3275</code></pre>
 <p>El conjunto de datos contiene 20.640 observaciones (bloques censales), cada una caracterizada por el valor mediano de las viviendas que agrupa. Este valor tiene un promedio de 206.855 dólares, con una desviación estándar de 115.395. La mediana se ubica en 179.700, es decir, el 50% de los bloques censales presenta un valor mediano de vivienda igual o inferior a esta cifra. El rango intercuartílico es de 145.125; el 25% de los bloques censales tiene un valor mediano igual o inferior a 119.600 (Q1); el 75% se encuentra por debajo o igual a 264.725 (Q3).</p>
 <p>Para complementar el resumen numérico, se visualiza la distribución completa de <code>median_house_value</code> mediante un histograma con una curva de densidad superpuesta. Esta visualización ayuda a identificar patrones que el resumen estadístico por sí solo no revela, como la forma general de la distribución (simétrica, sesgada, bimodal) y la presencia de posibles anomalías en los datos.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="análisis-de-la-variable-median_house_value.html#cb17-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb17-2"><a href="análisis-de-la-variable-median_house_value.html#cb17-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>median_house_value))<span class="sc">+</span></span>
-<span id="cb17-3"><a href="análisis-de-la-variable-median_house_value.html#cb17-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span><span class="fu">after_stat</span>(density)),</span>
-<span id="cb17-4"><a href="análisis-de-la-variable-median_house_value.html#cb17-4" tabindex="-1"></a>                 <span class="at">binwidth=</span><span class="dv">25000</span>,</span>
-<span id="cb17-5"><a href="análisis-de-la-variable-median_house_value.html#cb17-5" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">&quot;#54878f&quot;</span>,</span>
-<span id="cb17-6"><a href="análisis-de-la-variable-median_house_value.html#cb17-6" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">&quot;white&quot;</span>,</span>
-<span id="cb17-7"><a href="análisis-de-la-variable-median_house_value.html#cb17-7" tabindex="-1"></a>                 <span class="at">alpha=</span><span class="fl">0.6</span>)<span class="sc">+</span></span>
-<span id="cb17-8"><a href="análisis-de-la-variable-median_house_value.html#cb17-8" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color=</span><span class="st">&quot;darkblue&quot;</span>, <span class="at">linewidth=</span><span class="fl">1.2</span>)<span class="sc">+</span></span>
-<span id="cb17-9"><a href="análisis-de-la-variable-median_house_value.html#cb17-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&#39;Distribucion del valor medio de las viviendas&#39;</span>,</span>
-<span id="cb17-10"><a href="análisis-de-la-variable-median_house_value.html#cb17-10" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&#39;valor medio de la casa(USD)&#39;</span>,</span>
-<span id="cb17-11"><a href="análisis-de-la-variable-median_house_value.html#cb17-11" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&#39;densidad&#39;</span>)<span class="sc">+</span></span>
-<span id="cb17-12"><a href="análisis-de-la-variable-median_house_value.html#cb17-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="análisis-de-la-variable-median_house_value.html#cb30-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="análisis-de-la-variable-median_house_value.html#cb30-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>median_house_value))<span class="sc">+</span></span>
+<span id="cb30-3"><a href="análisis-de-la-variable-median_house_value.html#cb30-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span><span class="fu">after_stat</span>(density)),</span>
+<span id="cb30-4"><a href="análisis-de-la-variable-median_house_value.html#cb30-4" tabindex="-1"></a>                 <span class="at">binwidth=</span><span class="dv">25000</span>,</span>
+<span id="cb30-5"><a href="análisis-de-la-variable-median_house_value.html#cb30-5" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">&quot;#54878f&quot;</span>,</span>
+<span id="cb30-6"><a href="análisis-de-la-variable-median_house_value.html#cb30-6" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">&quot;white&quot;</span>,</span>
+<span id="cb30-7"><a href="análisis-de-la-variable-median_house_value.html#cb30-7" tabindex="-1"></a>                 <span class="at">alpha=</span><span class="fl">0.6</span>)<span class="sc">+</span></span>
+<span id="cb30-8"><a href="análisis-de-la-variable-median_house_value.html#cb30-8" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color=</span><span class="st">&quot;darkblue&quot;</span>, <span class="at">linewidth=</span><span class="fl">1.2</span>)<span class="sc">+</span></span>
+<span id="cb30-9"><a href="análisis-de-la-variable-median_house_value.html#cb30-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&#39;Distribucion del valor medio de las viviendas&#39;</span>,</span>
+<span id="cb30-10"><a href="análisis-de-la-variable-median_house_value.html#cb30-10" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&#39;valor medio de la casa(USD)&#39;</span>,</span>
+<span id="cb30-11"><a href="análisis-de-la-variable-median_house_value.html#cb30-11" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&#39;densidad&#39;</span>)<span class="sc">+</span></span>
+<span id="cb30-12"><a href="análisis-de-la-variable-median_house_value.html#cb30-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="tareademetodos_files/figure-html/histograma%20de%20median_house_value-1.png" width="672" /></p>
 <p>El histograma muestra una distribución con asimetría positiva, por lo que la mayoría de los bloques censales se concentran en valores bajos y medios, al tiempo que un grupo menor se extiende en una cola larga hacia la derecha, patrón que también se refleja en que la media (206.855,8) sea superior a la mediana (179.700), dado que los valores extremos altos desplazan el promedio sin afectar a la mediana. Asimismo, se observa una barra inusualmente alta en $500.000, correspondiente a 965 bloques censales (4.7% del total), que rompe el decrecimiento gradual esperado en la cola de la distribución.</p>
 <p>Como complemento al histograma, se construye un diagrama de caja y bigotes, con el que se visualizará de forma más precisa la mediana, los cuartiles y, en especial, la cantidad y ubicación de los valores atípicos de la variable.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="análisis-de-la-variable-median_house_value.html#cb18-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb18-2"><a href="análisis-de-la-variable-median_house_value.html#cb18-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y=</span>median_house_value))<span class="sc">+</span></span>
-<span id="cb18-3"><a href="análisis-de-la-variable-median_house_value.html#cb18-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">&quot;#54878f&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">outlier.color=</span><span class="st">&quot;darkred&quot;</span>)<span class="sc">+</span></span>
-<span id="cb18-4"><a href="análisis-de-la-variable-median_house_value.html#cb18-4" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun=</span>mean, <span class="at">geom=</span><span class="st">&#39;point&#39;</span>, <span class="at">shape=</span><span class="dv">20</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">color=</span><span class="st">&quot;darkgreen&quot;</span>)<span class="sc">+</span></span>
-<span id="cb18-5"><a href="análisis-de-la-variable-median_house_value.html#cb18-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="análisis-de-la-variable-median_house_value.html#cb31-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb31-2"><a href="análisis-de-la-variable-median_house_value.html#cb31-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y=</span>median_house_value))<span class="sc">+</span></span>
+<span id="cb31-3"><a href="análisis-de-la-variable-median_house_value.html#cb31-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">&quot;#54878f&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">outlier.color=</span><span class="st">&quot;darkred&quot;</span>)<span class="sc">+</span></span>
+<span id="cb31-4"><a href="análisis-de-la-variable-median_house_value.html#cb31-4" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun=</span>mean, <span class="at">geom=</span><span class="st">&#39;point&#39;</span>, <span class="at">shape=</span><span class="dv">20</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">color=</span><span class="st">&quot;darkgreen&quot;</span>)<span class="sc">+</span></span>
+<span id="cb31-5"><a href="análisis-de-la-variable-median_house_value.html#cb31-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="tareademetodos_files/figure-html/caja%20de%20bigotes%20de%20median_house_value-1.png" width="672" /></p>
 <p>El boxplot representa la asimetría descrita en los párrafos anteriores. La mediana no está centrada dentro de la caja, ya que la distancia entre Q1 y la mediana (60.100) es menor que la distancia entre la mediana y Q3 (85.025), lo que indica que el 25% superior de los datos ocupa un rango de valores más amplio que el 25% inferior.</p>
 <p>Esto se refuerza con el bigote superior, notablemente más largo que el inferior (≈217.688 frente a ≈104.601), pues mientras el límite inferior teórico (Q1 - 1.5×RIC) resulta negativo y por tanto no genera atípicos, el límite superior (Q3 + 1.5×RIC ≈ 482.413) sí es superado por un subconjunto de datos. En consecuencia, se identifican 1.071 valores atípicos (5.2% del total), todos ubicados por encima del límite superior, lo que confirma que la dispersión de la variable no está distribuida de forma pareja, concentrada en los bloques censales de mayor valor.</p>

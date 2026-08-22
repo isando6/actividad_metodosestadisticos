@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 Ingeniería de características | Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ’California Housing</title>
+  <title>7 Ingeniería de características | Análisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 Ingeniería de características | Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ’California Housing" />
+  <meta property="og:title" content="7 Ingeniería de características | Análisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 Ingeniería de características | Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ’California Housing" />
+  <meta name="twitter:title" content="7 Ingeniería de características | Análisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Karina Núñez Sarmiento, Isabella Sandoval Escorcia" />
 
 
-<meta name="date" content="2026-08-20" />
+<meta name="date" content="2026-08-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -209,7 +209,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ánalisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ’California Housing</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis exploratorio con variable respuesta numérica: prueba con el conjunto de datos ‘California Housing’</a>
           </h1>
         </div>
 
@@ -226,16 +226,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Por último, para evitar los problemas que implican el uso de coordenadas aisladas, la información de <code>latitude</code> y <code>longitude</code> se reestructurará mediante el cálculo de distancias hacia centros económicos clave.</p>
 <div id="variables-de-proporción" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Variables de proporción<a href="ingeniería-de-características.html#variables-de-proporci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="ingeniería-de-características.html#cb54-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb54-2"><a href="ingeniería-de-características.html#cb54-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb54-3"><a href="ingeniería-de-características.html#cb54-3" tabindex="-1"></a>    <span class="at">rooms_per_household =</span> total_rooms <span class="sc">/</span> households,</span>
-<span id="cb54-4"><a href="ingeniería-de-características.html#cb54-4" tabindex="-1"></a>    <span class="at">bedrooms_per_room =</span> total_bedrooms <span class="sc">/</span> total_rooms,</span>
-<span id="cb54-5"><a href="ingeniería-de-características.html#cb54-5" tabindex="-1"></a>    <span class="at">population_per_household =</span> population <span class="sc">/</span> households</span>
-<span id="cb54-6"><a href="ingeniería-de-características.html#cb54-6" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> df</span>
-<span id="cb54-7"><a href="ingeniería-de-características.html#cb54-7" tabindex="-1"></a></span>
-<span id="cb54-8"><a href="ingeniería-de-características.html#cb54-8" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb54-9"><a href="ingeniería-de-características.html#cb54-9" tabindex="-1"></a>  <span class="fu">select</span>(rooms_per_household, bedrooms_per_room, population_per_household) <span class="sc">%&gt;%</span></span>
-<span id="cb54-10"><a href="ingeniería-de-características.html#cb54-10" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="ingeniería-de-características.html#cb67-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb67-2"><a href="ingeniería-de-características.html#cb67-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb67-3"><a href="ingeniería-de-características.html#cb67-3" tabindex="-1"></a>    <span class="at">rooms_per_household =</span> total_rooms <span class="sc">/</span> households,</span>
+<span id="cb67-4"><a href="ingeniería-de-características.html#cb67-4" tabindex="-1"></a>    <span class="at">bedrooms_per_room =</span> total_bedrooms <span class="sc">/</span> total_rooms,</span>
+<span id="cb67-5"><a href="ingeniería-de-características.html#cb67-5" tabindex="-1"></a>    <span class="at">population_per_household =</span> population <span class="sc">/</span> households</span>
+<span id="cb67-6"><a href="ingeniería-de-características.html#cb67-6" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> df</span>
+<span id="cb67-7"><a href="ingeniería-de-características.html#cb67-7" tabindex="-1"></a></span>
+<span id="cb67-8"><a href="ingeniería-de-características.html#cb67-8" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb67-9"><a href="ingeniería-de-características.html#cb67-9" tabindex="-1"></a>  <span class="fu">select</span>(rooms_per_household, bedrooms_per_room, population_per_household) <span class="sc">%&gt;%</span></span>
+<span id="cb67-10"><a href="ingeniería-de-características.html#cb67-10" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>##  rooms_per_household bedrooms_per_room population_per_household
 ##  Min.   :  0.8462    Min.   :0.04594   Min.   :   0.6923       
 ##  1st Qu.:  4.4407    1st Qu.:0.17536   1st Qu.:   2.4297       
@@ -251,22 +251,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Al eliminar el efecto del “tamaño del bloque”, estas variables capturan información más directamente relacionada con el valor de una vivienda individual, y evitan que cualquier análisis posterior confunda “bloques con muchas casas agrupadas” con “viviendas de mayor calidad o tamaño”.</p>
 <p>Sin embargo, al tratarse de variables construidas mediante una división, son sensibles a bloques censales con un número de hogares o habitaciones muy bajo o con inconsistencias en el registro. Esto genera valores extremos poco representativos, evidencia observada en el máximo de 1.243 habitantes por hogar, el máximo de 141.91 habitaciones por hogar o el máximo de 3.49 en la proporción de dormitorios por habitación (un valor atípico e inconsistente, pues la proporción no debería superar 1.0).</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="ingeniería-de-características.html#cb56-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb56-2"><a href="ingeniería-de-características.html#cb56-2" tabindex="-1"></a>  <span class="fu">filter</span>(households <span class="sc">&lt;=</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb56-3"><a href="ingeniería-de-características.html#cb56-3" tabindex="-1"></a>  <span class="fu">count</span>(<span class="at">name =</span> <span class="st">&quot;n_bloques_households_bajos&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="ingeniería-de-características.html#cb69-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb69-2"><a href="ingeniería-de-características.html#cb69-2" tabindex="-1"></a>  <span class="fu">filter</span>(households <span class="sc">&lt;=</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb69-3"><a href="ingeniería-de-características.html#cb69-3" tabindex="-1"></a>  <span class="fu">count</span>(<span class="at">name =</span> <span class="st">&quot;n_bloques_households_bajos&quot;</span>)</span></code></pre></div>
 <pre><code>##   n_bloques_households_bajos
 ## 1                          4</code></pre>
 <div id="transformación-de-median_income" class="section level3 hasAnchor" number="7.1.1">
 <h3><span class="header-section-number">7.1.1</span> Transformación de <code>median_income</code><a href="ingeniería-de-características.html#transformaci%C3%B3n-de-median_income" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="ingeniería-de-características.html#cb58-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb58-2"><a href="ingeniería-de-características.html#cb58-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb58-3"><a href="ingeniería-de-características.html#cb58-3" tabindex="-1"></a>    <span class="at">log_median_income =</span> <span class="fu">log</span>(median_income)</span>
-<span id="cb58-4"><a href="ingeniería-de-características.html#cb58-4" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> df</span>
-<span id="cb58-5"><a href="ingeniería-de-características.html#cb58-5" tabindex="-1"></a></span>
-<span id="cb58-6"><a href="ingeniería-de-características.html#cb58-6" tabindex="-1"></a><span class="fu">c</span>(</span>
-<span id="cb58-7"><a href="ingeniería-de-características.html#cb58-7" tabindex="-1"></a>  <span class="at">asimetria_original =</span> <span class="fu">skewness</span>(df<span class="sc">$</span>median_income),</span>
-<span id="cb58-8"><a href="ingeniería-de-características.html#cb58-8" tabindex="-1"></a>  <span class="at">asimetria_transformada =</span> <span class="fu">skewness</span>(df<span class="sc">$</span>log_median_income)</span>
-<span id="cb58-9"><a href="ingeniería-de-características.html#cb58-9" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="ingeniería-de-características.html#cb71-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb71-2"><a href="ingeniería-de-características.html#cb71-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb71-3"><a href="ingeniería-de-características.html#cb71-3" tabindex="-1"></a>    <span class="at">log_median_income =</span> <span class="fu">log</span>(median_income)</span>
+<span id="cb71-4"><a href="ingeniería-de-características.html#cb71-4" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> df</span>
+<span id="cb71-5"><a href="ingeniería-de-características.html#cb71-5" tabindex="-1"></a></span>
+<span id="cb71-6"><a href="ingeniería-de-características.html#cb71-6" tabindex="-1"></a><span class="fu">c</span>(</span>
+<span id="cb71-7"><a href="ingeniería-de-características.html#cb71-7" tabindex="-1"></a>  <span class="at">asimetria_original =</span> <span class="fu">skewness</span>(df<span class="sc">$</span>median_income),</span>
+<span id="cb71-8"><a href="ingeniería-de-características.html#cb71-8" tabindex="-1"></a>  <span class="at">asimetria_transformada =</span> <span class="fu">skewness</span>(df<span class="sc">$</span>log_median_income)</span>
+<span id="cb71-9"><a href="ingeniería-de-características.html#cb71-9" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>##     asimetria_original asimetria_transformada 
 ##              1.6465370             -0.1460712</code></pre>
 <p>La variable <code>median_income</code> presentaba una asimetría positiva marcada (coeficiente de 1.65 aproximadamente), reflejo de que la mayoría de los bloques tienen ingresos moderados y unos pocos concentran ingresos muy altos. Se aplicó una transformación logarítmica (<code>log_median_income</code>) para reducir esta asimetría y comprimir la escala de los valores extremos, conservando en el proceso la varianza original de la variable y el orden relativo entre los bloques.</p>
@@ -274,19 +274,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="categorización-de-housing_median_age" class="section level3 hasAnchor" number="7.1.2">
 <h3><span class="header-section-number">7.1.2</span> Categorización de <code>housing_median_age</code><a href="ingeniería-de-características.html#categorizaci%C3%B3n-de-housing_median_age" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="ingeniería-de-características.html#cb60-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb60-2"><a href="ingeniería-de-características.html#cb60-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb60-3"><a href="ingeniería-de-características.html#cb60-3" tabindex="-1"></a>    <span class="at">age_category =</span> <span class="fu">cut</span>(</span>
-<span id="cb60-4"><a href="ingeniería-de-características.html#cb60-4" tabindex="-1"></a>      housing_median_age,</span>
-<span id="cb60-5"><a href="ingeniería-de-características.html#cb60-5" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">18</span>, <span class="dv">29</span>, <span class="dv">37</span>, <span class="dv">52</span>),</span>
-<span id="cb60-6"><a href="ingeniería-de-características.html#cb60-6" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Nueva (0-18)&quot;</span>, <span class="st">&quot;Reciente (19-29)&quot;</span>, <span class="st">&quot;Madura (30-37)&quot;</span>, <span class="st">&quot;Antigua (38-52)&quot;</span>),</span>
-<span id="cb60-7"><a href="ingeniería-de-características.html#cb60-7" tabindex="-1"></a>      <span class="at">include.lowest =</span> <span class="cn">TRUE</span></span>
-<span id="cb60-8"><a href="ingeniería-de-características.html#cb60-8" tabindex="-1"></a>    )</span>
-<span id="cb60-9"><a href="ingeniería-de-características.html#cb60-9" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> df</span>
-<span id="cb60-10"><a href="ingeniería-de-características.html#cb60-10" tabindex="-1"></a></span>
-<span id="cb60-11"><a href="ingeniería-de-características.html#cb60-11" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb60-12"><a href="ingeniería-de-características.html#cb60-12" tabindex="-1"></a>  <span class="fu">count</span>(age_category, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb60-13"><a href="ingeniería-de-características.html#cb60-13" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="ingeniería-de-características.html#cb73-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb73-2"><a href="ingeniería-de-características.html#cb73-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb73-3"><a href="ingeniería-de-características.html#cb73-3" tabindex="-1"></a>    <span class="at">age_category =</span> <span class="fu">cut</span>(</span>
+<span id="cb73-4"><a href="ingeniería-de-características.html#cb73-4" tabindex="-1"></a>      housing_median_age,</span>
+<span id="cb73-5"><a href="ingeniería-de-características.html#cb73-5" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">18</span>, <span class="dv">29</span>, <span class="dv">37</span>, <span class="dv">52</span>),</span>
+<span id="cb73-6"><a href="ingeniería-de-características.html#cb73-6" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Nueva (0-18)&quot;</span>, <span class="st">&quot;Reciente (19-29)&quot;</span>, <span class="st">&quot;Madura (30-37)&quot;</span>, <span class="st">&quot;Antigua (38-52)&quot;</span>),</span>
+<span id="cb73-7"><a href="ingeniería-de-características.html#cb73-7" tabindex="-1"></a>      <span class="at">include.lowest =</span> <span class="cn">TRUE</span></span>
+<span id="cb73-8"><a href="ingeniería-de-características.html#cb73-8" tabindex="-1"></a>    )</span>
+<span id="cb73-9"><a href="ingeniería-de-características.html#cb73-9" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> df</span>
+<span id="cb73-10"><a href="ingeniería-de-características.html#cb73-10" tabindex="-1"></a></span>
+<span id="cb73-11"><a href="ingeniería-de-características.html#cb73-11" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb73-12"><a href="ingeniería-de-características.html#cb73-12" tabindex="-1"></a>  <span class="fu">count</span>(age_category, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb73-13"><a href="ingeniería-de-características.html#cb73-13" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>))</span></code></pre></div>
 <pre><code>##       age_category    n Porcentaje
 ## 1     Nueva (0-18) 5326      25.80
 ## 2 Reciente (19-29) 5343      25.89
@@ -304,16 +304,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="distancia-a-centros-económicos" class="section level3 hasAnchor" number="7.1.3">
 <h3><span class="header-section-number">7.1.3</span> Distancia a centros económicos<a href="ingeniería-de-características.html#distancia-a-centros-econ%C3%B3micos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="ingeniería-de-características.html#cb62-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb62-2"><a href="ingeniería-de-características.html#cb62-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb62-3"><a href="ingeniería-de-características.html#cb62-3" tabindex="-1"></a>    <span class="at">dist_LA =</span> <span class="fu">sqrt</span>((latitude <span class="sc">-</span> <span class="fl">34.05</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (longitude <span class="sc">-</span> (<span class="sc">-</span><span class="fl">118.24</span>))<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb62-4"><a href="ingeniería-de-características.html#cb62-4" tabindex="-1"></a>    <span class="at">dist_SF =</span> <span class="fu">sqrt</span>((latitude <span class="sc">-</span> <span class="fl">37.77</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (longitude <span class="sc">-</span> (<span class="sc">-</span><span class="fl">122.42</span>))<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb62-5"><a href="ingeniería-de-características.html#cb62-5" tabindex="-1"></a>    <span class="at">dist_min_centro =</span> <span class="fu">pmin</span>(dist_LA, dist_SF)</span>
-<span id="cb62-6"><a href="ingeniería-de-características.html#cb62-6" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> df</span>
-<span id="cb62-7"><a href="ingeniería-de-características.html#cb62-7" tabindex="-1"></a></span>
-<span id="cb62-8"><a href="ingeniería-de-características.html#cb62-8" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb62-9"><a href="ingeniería-de-características.html#cb62-9" tabindex="-1"></a>  <span class="fu">select</span>(dist_LA, dist_SF, dist_min_centro) <span class="sc">%&gt;%</span></span>
-<span id="cb62-10"><a href="ingeniería-de-características.html#cb62-10" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="ingeniería-de-características.html#cb75-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb75-2"><a href="ingeniería-de-características.html#cb75-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb75-3"><a href="ingeniería-de-características.html#cb75-3" tabindex="-1"></a>    <span class="at">dist_LA =</span> <span class="fu">sqrt</span>((latitude <span class="sc">-</span> <span class="fl">34.05</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (longitude <span class="sc">-</span> (<span class="sc">-</span><span class="fl">118.24</span>))<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb75-4"><a href="ingeniería-de-características.html#cb75-4" tabindex="-1"></a>    <span class="at">dist_SF =</span> <span class="fu">sqrt</span>((latitude <span class="sc">-</span> <span class="fl">37.77</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (longitude <span class="sc">-</span> (<span class="sc">-</span><span class="fl">122.42</span>))<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb75-5"><a href="ingeniería-de-características.html#cb75-5" tabindex="-1"></a>    <span class="at">dist_min_centro =</span> <span class="fu">pmin</span>(dist_LA, dist_SF)</span>
+<span id="cb75-6"><a href="ingeniería-de-características.html#cb75-6" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> df</span>
+<span id="cb75-7"><a href="ingeniería-de-características.html#cb75-7" tabindex="-1"></a></span>
+<span id="cb75-8"><a href="ingeniería-de-características.html#cb75-8" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb75-9"><a href="ingeniería-de-características.html#cb75-9" tabindex="-1"></a>  <span class="fu">select</span>(dist_LA, dist_SF, dist_min_centro) <span class="sc">%&gt;%</span></span>
+<span id="cb75-10"><a href="ingeniería-de-características.html#cb75-10" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>##     dist_LA          dist_SF      dist_min_centro 
 ##  Min.   :0.0000   Min.   :0.000   Min.   :0.0000  
 ##  1st Qu.:0.3183   1st Qu.:1.210   1st Qu.:0.2285  
